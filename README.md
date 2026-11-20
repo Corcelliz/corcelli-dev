@@ -1,23 +1,58 @@
-<h1 align="center">📋 Meu Portfólio.</h1>
-<p align="center">Formatação do meu segundo portfólio aplicando conhecimentos que fui adquirindo conforme meus estudos avançam.</p>
+# corcelli-dev
 
----
-<div>
-    <h2 style="display: flex; justify-content: center">🧑🏼‍💻 Métodos e Tecnologias Utilizados</h2>
-    <p style="display: flex; justify-content: center">
-        <li>Estrutura Html, Css e JavaScript puro<br>
-        <li>Utilização de HiperTags.</li>
-        <li>FlexBox.</li>
-        <li>formatação de Divs.</li>
-        <li>Criação de suavização Âncora com Js.</li>
-        <li>Layout Responsivo.</li>
-    </p>
-</div><br>
+Portfólio de **Guilherme Corcelli**: desenvolvimento web e automação com IA, de São Paulo, aberto a trabalho remoto.
 
-<div style=" display: flex; justify-content: center; align-items: center; gap: 30px">
-    <img align="center" height="30px" alt="JavaScript" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
-    <img align="center" height="30px" alt="Html" src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
-    <img align="center" height="30px" alt="Css" src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
-</div><br>
+## O que tem no site
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/bed78ece-a4cc-4d93-ab19-648034e9bf87/deploy-status)](https://app.netlify.com/sites/corcelliportfolio/deploys)
+- **Abertura:** nome, apresentação e foto.
+- **Sobre mim:** formação, experiência, como uso IA no desenvolvimento e as ferramentas do dia a dia. A trajetória aparece como uma linha que desce da foto.
+- **Projetos:** três sistemas com print, destaques técnicos e link para o código.
+- **Contato:** e-mail com os botões "Enviar e-mail" e "Copiar e-mail".
+
+## Projetos apresentados
+
+| Projeto | O que é | Código |
+|---|---|---|
+| CRM System | Gestão comercial com área do colaborador e do administrador (Node.js, Express, SQLite) | [crm-system](https://github.com/Corcelliz/crm-system) |
+| tokenEye | App desktop que mostra o uso do plano do Claude (Electron) | [tokenEye](https://github.com/Corcelliz/tokenEye) |
+| Supatasks | Lista de tarefas com Supabase e Row Level Security | [supatasks](https://github.com/Corcelliz/supatasks) |
+
+## Tecnologias
+
+- HTML, CSS e JavaScript puros, sem framework, sem dependências e sem etapa de build.
+- Fontes **Archivo** (títulos) e **Roboto** (textos), pelo Google Fonts.
+- Tema claro e escuro automáticos, conforme o sistema de quem visita.
+- Acessibilidade: navegação pelo teclado com foco visível, link para pular ao conteúdo, textos alternativos e respeito à opção "reduzir movimento".
+
+## Estrutura
+
+```
+corcelli-dev/
+├── index.html
+├── css/
+│   ├── base.css         # cores, tipografia e reset
+│   ├── layout.css       # cabeçalho, seções e grade
+│   └── components.css   # botões, trajetória, projetos e contato
+├── js/
+│   └── main.js          # animação da trajetória e cópia do e-mail
+└── assets/
+    ├── icons/
+    │   └── favicon.svg
+    └── images/
+        ├── guilherme-corcelli.jpg
+        └── projects/    # prints dos projetos (dados fictícios)
+```
+
+## Como ver localmente
+
+É um site estático. Abra o `index.html` no navegador ou sirva a pasta:
+
+```bash
+python -m http.server 5510
+```
+
+Depois acesse http://localhost:5510.
+
+## Contato
+
+corcellidev@gmail.com

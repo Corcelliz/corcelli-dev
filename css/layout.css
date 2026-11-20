@@ -183,6 +183,49 @@
   font-stretch: 105%;
 }
 
+/* ---------- Contato ---------- */
+
+.contato {
+  border-top: 1px solid var(--fio);
+}
+
+.contato .container > p:not(.aviso) {
+  max-width: 38rem;
+  margin-top: var(--e-3);
+}
+
+/* ---------- Rodapé ---------- */
+
+.rodape {
+  border-top: 1px solid var(--fio);
+  color: var(--tinta-suave);
+  font-size: var(--t-0);
+}
+
+.rodape .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-2);
+  padding-block: var(--e-4);
+}
+
+.rodape ul {
+  display: flex;
+  gap: var(--e-3);
+}
+
+.rodape a {
+  text-decoration-color: var(--fio);
+  text-underline-offset: 3px;
+}
+
+.rodape a:hover {
+  color: var(--tinta);
+  text-decoration-color: var(--sinal);
+}
+
 /* ---------- Telas menores ---------- */
 
 @media (max-width: 52rem) {

@@ -37,6 +37,36 @@
 }
 
 /* =========================================================
+   Contato: o e-mail em destaque e a confirmação de cópia.
+   ========================================================= */
+
+.email {
+  display: inline-block;
+  margin-top: var(--e-4);
+  font-family: var(--fonte-titulo);
+  font-size: var(--t-4);
+  font-weight: 700;
+  font-stretch: 105%;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  text-decoration-color: var(--sinal);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.18em;
+}
+
+.email:hover {
+  color: var(--sinal);
+}
+
+.aviso {
+  min-height: 1.6em;
+  margin-top: var(--e-2);
+  color: var(--tinta-suave);
+  font-size: var(--t-0);
+}
+
+/* =========================================================
    Ferramentas: lista de definição em duas colunas.
    ========================================================= */
 
@@ -188,6 +218,11 @@
   align-items: center;
   padding-block: var(--e-5);
   border-top: 1px solid var(--fio);
+}
+
+/* O último projeto não soma espaço extra ao da própria seção */
+.projeto:last-of-type {
+  padding-bottom: 0;
 }
 
 /* Nos projetos pares o print vai para a direita e mantém a coluna larga */

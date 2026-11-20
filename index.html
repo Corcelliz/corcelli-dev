@@ -12,6 +12,16 @@
     <meta name="theme-color" content="#14181d" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
 
+    <!-- Prévia ao compartilhar o link -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content="Guilherme Corcelli | Desenvolvimento web e automação com IA" />
+    <meta
+      property="og:description"
+      content="Sistemas web e automações com IA, do banco de dados à tela. Projetos: CRM System, tokenEye e Supatasks."
+    />
+    <meta name="twitter:card" content="summary" />
+
     <!-- Fontes: Archivo nos títulos, Roboto nos textos -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -254,7 +264,43 @@
           </article>
         </div>
       </section>
+
+      <section class="secao contato" id="contato" aria-labelledby="contato-titulo">
+        <div class="container">
+          <h2 class="secao-titulo" id="contato-titulo">Contato</h2>
+          <p>
+            Estou aberto a vagas remotas em desenvolvimento web e automação com IA, e
+            também a projetos pontuais. O jeito mais rápido de falar comigo é por e-mail.
+          </p>
+          <a class="email" href="mailto:corcellidev@gmail.com">corcellidev@gmail.com</a>
+          <div class="acoes">
+            <a
+              class="botao"
+              href="mailto:corcellidev@gmail.com?subject=Contato%20pelo%20portf%C3%B3lio"
+              >Enviar e-mail</a
+            >
+            <button
+              class="botao botao--contorno"
+              type="button"
+              data-copiar="corcellidev@gmail.com"
+            >
+              Copiar e-mail
+            </button>
+          </div>
+          <p class="aviso" role="status" aria-live="polite"></p>
+        </div>
+      </section>
     </main>
+
+    <footer class="rodape">
+      <div class="container">
+        <p>© 2026 Guilherme Corcelli</p>
+        <ul role="list">
+          <li><a href="https://github.com/Corcelliz">GitHub</a></li>
+          <li><a href="https://github.com/Corcelliz/corcelli-dev">Código deste site</a></li>
+        </ul>
+      </div>
+    </footer>
 
     <script src="js/main.js" defer></script>
   </body>
