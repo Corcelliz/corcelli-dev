@@ -1,0 +1,37 @@
+/* =========================================================
+   Componentes: botões e links de ação.
+   ========================================================= */
+
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e-1);
+  min-height: 2.75rem;
+  padding: 0.625rem 1.25rem;
+  border: 1px solid var(--sinal-fundo);
+  border-radius: var(--raio);
+  background: var(--sinal-fundo);
+  color: var(--sinal-texto);
+  font: 500 var(--t-0) / 1 var(--fonte-texto);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.botao:hover {
+  background: #a51824;
+  border-color: #a51824;
+}
+
+.botao--contorno {
+  background: transparent;
+  border-color: var(--tinta);
+  color: var(--tinta);
+}
+
+.botao--contorno:hover {
+  background: var(--tinta);
+  border-color: var(--tinta);
+  color: var(--papel);
+}

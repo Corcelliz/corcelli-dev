@@ -1,0 +1,172 @@
+/* =========================================================
+   Layout: cabeçalho, seções e a grade principal.
+   A grade tem duas colunas: o conteúdo à esquerda e um trilho
+   à direita, onde ficam a foto e a linha da trajetória.
+   ========================================================= */
+
+.container {
+  width: min(100% - 2 * var(--margem), var(--largura));
+  margin-inline: auto;
+}
+
+/* Posição horizontal da linha vermelha dentro do trilho.
+   A foto e a trajetória usam o mesmo valor para a linha parecer contínua. */
+:root {
+  --trilho: minmax(16rem, 21rem);
+  --eixo: 1.25rem;
+}
+
+/* ---------- Cabeçalho ---------- */
+
+.topo {
+  border-bottom: 1px solid var(--fio);
+}
+
+.topo .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-3);
+  min-height: 4.5rem;
+}
+
+.marca {
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  font-stretch: 115%;
+  font-size: var(--t-2);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+}
+
+.menu ul {
+  display: flex;
+  gap: var(--e-3);
+}
+
+.menu a:not(.botao) {
+  color: var(--tinta-suave);
+  text-decoration: none;
+  font-size: var(--t-0);
+  font-weight: 500;
+}
+
+.menu a:not(.botao):hover {
+  color: var(--tinta);
+}
+
+/* ---------- Abertura ---------- */
+
+.abertura .container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--trilho);
+  column-gap: var(--e-5);
+  align-items: end;
+  padding-top: var(--e-6);
+}
+
+.nome {
+  font-size: var(--t-nome);
+  font-weight: 800;
+  font-stretch: 112%;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+}
+
+.nome span {
+  display: block;
+}
+
+.apresentacao {
+  max-width: 34rem;
+  margin-top: var(--e-4);
+  font-size: var(--t-2);
+  line-height: 1.5;
+}
+
+.local {
+  margin-top: var(--e-2);
+  color: var(--tinta-suave);
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+  margin-top: var(--e-4);
+}
+
+/* A foto fica no trilho; abaixo dela começa a linha vermelha,
+   que desce até o fim da abertura e continua na trajetória. */
+.retrato {
+  position: relative;
+  padding-bottom: var(--e-6);
+}
+
+.retrato img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--raio);
+}
+
+.retrato::after {
+  content: "";
+  position: absolute;
+  left: var(--eixo);
+  bottom: 0;
+  width: 4px;
+  height: var(--e-6);
+  margin-left: -2px;
+  background: var(--sinal);
+}
+
+/* ---------- Seções ---------- */
+
+.secao {
+  padding-block: var(--e-6);
+}
+
+.secao-titulo {
+  font-size: var(--t-4);
+  font-weight: 700;
+  font-stretch: 108%;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Telas menores ---------- */
+
+@media (max-width: 52rem) {
+  .abertura .container {
+    grid-template-columns: 1fr;
+    row-gap: var(--e-4);
+    padding-top: var(--e-5);
+  }
+
+  /* No celular a foto vem antes do nome, menor */
+  .retrato {
+    order: -1;
+    width: min(100%, 13rem);
+    padding-bottom: 0;
+  }
+
+  .retrato::after {
+    display: none;
+  }
+}
+
+@media (max-width: 34rem) {
+  .menu .botao {
+    display: none;
+  }
+
+  .menu ul {
+    gap: var(--e-2);
+  }
+}
