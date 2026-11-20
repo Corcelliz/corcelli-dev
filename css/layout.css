@@ -106,7 +106,7 @@
    que desce até o fim da abertura e continua na trajetória. */
 .retrato {
   position: relative;
-  padding-bottom: var(--e-6);
+  padding-bottom: var(--e-5);
 }
 
 .retrato img {
@@ -122,7 +122,7 @@
   left: var(--eixo);
   bottom: 0;
   width: 4px;
-  height: var(--e-6);
+  height: var(--e-5);
   margin-left: -2px;
   background: var(--sinal);
 }
@@ -140,9 +140,46 @@
   letter-spacing: -0.02em;
 }
 
+/* ---------- Sobre ---------- */
+
+/* Topo menor: a linha da foto atravessa esse espaço até a trajetória */
+.sobre {
+  padding-top: var(--e-5);
+}
+
+.sobre .container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--trilho);
+  column-gap: var(--e-5);
+}
+
+.sobre-texto {
+  max-width: 38rem;
+}
+
+.sobre-texto > p {
+  margin-top: var(--e-2);
+}
+
+.sobre-texto > .secao-titulo + p {
+  margin-top: var(--e-3);
+}
+
+.sub-titulo {
+  margin-top: var(--e-5);
+  font-size: var(--t-2);
+  font-weight: 700;
+  font-stretch: 105%;
+}
+
 /* ---------- Telas menores ---------- */
 
 @media (max-width: 52rem) {
+  .sobre .container {
+    grid-template-columns: 1fr;
+    row-gap: var(--e-5);
+  }
+
   .abertura .container {
     grid-template-columns: 1fr;
     row-gap: var(--e-4);

@@ -35,3 +35,155 @@
   border-color: var(--tinta);
   color: var(--papel);
 }
+
+/* =========================================================
+   Ferramentas: lista de definição em duas colunas.
+   ========================================================= */
+
+.ferramentas {
+  margin-top: var(--e-2);
+  border-top: 1px solid var(--fio);
+}
+
+.ferramentas > div {
+  display: grid;
+  grid-template-columns: 10rem minmax(0, 1fr);
+  gap: var(--e-2);
+  padding-block: 0.875rem;
+  border-bottom: 1px solid var(--fio);
+}
+
+.ferramentas dt {
+  color: var(--tinta-suave);
+  font-weight: 500;
+}
+
+@media (max-width: 34rem) {
+  .ferramentas > div {
+    grid-template-columns: 1fr;
+    gap: 0.125rem;
+  }
+}
+
+/* =========================================================
+   Linha da trajetória: o elemento de destaque da página.
+   Cada estação desenha o próprio trecho da linha (::before)
+   e o próprio ponto (::after). Os trechos se encostam, então
+   a linha parece uma só. O último trecho é tracejado: é o
+   destino que ainda não chegou.
+   ========================================================= */
+
+.linha {
+  position: relative;
+  --ponto: 1.125rem;      /* diâmetro da estação */
+  --ponto-topo: 0.2rem;   /* altura do ponto em relação ao nome */
+}
+
+/* Continuação da linha que desce da foto, atravessando o espaço da seção */
+.linha::before {
+  content: "";
+  position: absolute;
+  left: var(--eixo);
+  bottom: 100%;
+  width: 4px;
+  height: var(--e-5);   /* igual ao padding-top da seção Sobre */
+  margin-left: -2px;
+  background: var(--sinal);
+}
+
+.estacao {
+  position: relative;
+  padding: 0 0 var(--e-4) calc(var(--eixo) + 1.75rem);
+}
+
+.estacao::before {
+  content: "";
+  position: absolute;
+  left: var(--eixo);
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  margin-left: -2px;
+  background: var(--sinal);
+  transform-origin: top;
+}
+
+.estacao::after {
+  content: "";
+  position: absolute;
+  left: var(--eixo);
+  top: var(--ponto-topo);
+  width: var(--ponto);
+  height: var(--ponto);
+  margin-left: calc(var(--ponto) / -2);
+  border: 4px solid var(--sinal);
+  border-radius: 50%;
+  background: var(--papel);
+}
+
+.estacao strong {
+  display: block;
+  font-family: var(--fonte-titulo);
+  font-size: var(--t-1);
+  font-weight: 700;
+  font-stretch: 105%;
+  line-height: 1.3;
+}
+
+.estacao p {
+  margin-top: 0.25rem;
+  color: var(--tinta-suave);
+  font-size: var(--t-0);
+  line-height: 1.55;
+}
+
+/* Destino: trecho tracejado que termina no ponto, e ponto vazado */
+.estacao--destino {
+  padding-bottom: 0;
+}
+
+.estacao--destino::before {
+  bottom: auto;
+  height: calc(var(--ponto-topo) + var(--ponto) / 2);
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--sinal) 0 5px,
+    transparent 5px 10px
+  );
+}
+
+.estacao--destino::after {
+  border-width: 2px;
+  border-style: dashed;
+}
+
+/* Animação única da página: a linha é desenhada quando aparece.
+   Só acontece com JavaScript ativo e sem "reduzir movimento". */
+.anima .estacao::before {
+  transform: scaleY(0);
+  transition: transform 0.45s ease-out calc(var(--i) * 0.3s);
+}
+
+.anima .estacao::after {
+  opacity: 0;
+  transition: opacity 0.25s ease-out calc(var(--i) * 0.3s);
+}
+
+.anima .linha.visivel .estacao::before {
+  transform: scaleY(1);
+}
+
+.anima .linha.visivel .estacao::after {
+  opacity: 1;
+}
+
+/* No celular a foto não tem linha, então a trajetória começa sozinha */
+@media (max-width: 52rem) {
+  .linha {
+    --eixo: 0.625rem;
+  }
+
+  .linha::before {
+    display: none;
+  }
+}
