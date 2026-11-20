@@ -2,6 +2,8 @@
 
 Portfólio de **Guilherme Corcelli**: desenvolvimento web e automação com IA, de São Paulo, aberto a trabalho remoto.
 
+**Site no ar:** https://portfolio-nu-indol-z9sn0ih0dw.vercel.app/ (hospedado na Vercel)
+
 ## O que tem no site
 
 - **Abertura:** nome, apresentação e foto.
@@ -42,6 +44,10 @@ corcelli-dev/
         ├── guilherme-corcelli.jpg
         └── projects/    # prints dos projetos (dados fictícios)
 ```
+
+## Publicação
+
+O site é publicado na **Vercel**. Como é estático e não tem etapa de build, a Vercel serve os arquivos como estão.
 
 ## Como ver localmente
 
