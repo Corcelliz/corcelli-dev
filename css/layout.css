@@ -140,6 +140,17 @@
   letter-spacing: -0.02em;
 }
 
+/* Título da seção com uma linha de apoio */
+.secao-topo {
+  max-width: 38rem;
+  margin-bottom: var(--e-4);
+}
+
+.secao-topo p {
+  margin-top: var(--e-2);
+  color: var(--tinta-suave);
+}
+
 /* ---------- Sobre ---------- */
 
 /* Topo menor: a linha da foto atravessa esse espaço até a trajetória */

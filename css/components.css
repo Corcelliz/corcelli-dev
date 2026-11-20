@@ -177,6 +177,110 @@
   opacity: 1;
 }
 
+/* =========================================================
+   Projetos: print e texto lado a lado, alternando os lados.
+   ========================================================= */
+
+.projeto {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--e-4) var(--e-5);
+  align-items: center;
+  padding-block: var(--e-5);
+  border-top: 1px solid var(--fio);
+}
+
+/* Nos projetos pares o print vai para a direita e mantém a coluna larga */
+.projeto:nth-of-type(even) {
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+}
+
+.projeto:nth-of-type(even) .projeto-tela {
+  order: 2;
+}
+
+.projeto-tela img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top left;
+  border: 1px solid var(--fio);
+  border-radius: var(--raio);
+  background: var(--superficie);
+}
+
+.projeto-texto h3 {
+  font-size: var(--t-3);
+  font-weight: 800;
+  font-stretch: 110%;
+  letter-spacing: -0.02em;
+}
+
+.projeto-resumo {
+  margin-top: var(--e-1);
+  font-size: var(--t-2);
+  line-height: 1.4;
+}
+
+.projeto-texto > p:not(.projeto-resumo) {
+  margin-top: var(--e-2);
+  color: var(--tinta-suave);
+}
+
+.destaques {
+  margin-top: var(--e-3);
+  display: grid;
+  gap: var(--e-1);
+  font-size: var(--t-0);
+}
+
+/* Marcador: um traço curto da mesma cor da linha da trajetória */
+.destaques li {
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.destaques li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 0.625rem;
+  height: 2px;
+  background: var(--sinal);
+}
+
+.projeto-texto > .stack {
+  margin-top: var(--e-3);
+  font-size: var(--t-0);
+  font-weight: 500;
+  color: var(--tinta);
+}
+
+.link-projeto {
+  display: inline-block;
+  margin-top: var(--e-2);
+  font-weight: 500;
+  text-decoration-color: var(--sinal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.link-projeto:hover {
+  color: var(--sinal);
+}
+
+@media (max-width: 52rem) {
+  .projeto,
+  .projeto:nth-of-type(even) {
+    grid-template-columns: 1fr;
+  }
+
+  .projeto:nth-of-type(even) .projeto-tela {
+    order: 0;
+  }
+}
+
 /* No celular a foto não tem linha, então a trajetória começa sozinha */
 @media (max-width: 52rem) {
   .linha {

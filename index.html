@@ -139,6 +139,121 @@
           </div>
         </div>
       </section>
+
+      <section class="secao projetos" id="projetos" aria-labelledby="projetos-titulo">
+        <div class="container">
+          <header class="secao-topo">
+            <h2 class="secao-titulo" id="projetos-titulo">Projetos</h2>
+            <p>
+              Três sistemas que construí em 2026. O código de todos está aberto no GitHub,
+              com instruções para rodar. As telas usam dados fictícios.
+            </p>
+          </header>
+
+          <article class="projeto" aria-labelledby="projeto-crm">
+            <figure class="projeto-tela">
+              <img
+                src="assets/images/projects/crm-system.png"
+                alt="Funil de vendas do CRM System, com oportunidades organizadas em colunas por estágio"
+                width="1440"
+                height="860"
+                loading="lazy"
+              />
+            </figure>
+            <div class="projeto-texto">
+              <h3 id="projeto-crm">CRM System</h3>
+              <p class="projeto-resumo">
+                Sistema de gestão comercial com área do colaborador e área do administrador.
+              </p>
+              <p>
+                Funil de vendas com arrastar e soltar, carteira de clientes, tarefas, meta do
+                mês e um painel para o administrador acompanhar a equipe e a auditoria.
+              </p>
+              <ul class="destaques" role="list">
+                <li>
+                  Login validado no servidor, com sessão em cookie httpOnly, proteção CSRF e
+                  bloqueio por tentativas
+                </li>
+                <li>Banco SQLite nativo do Node.js e front-end sem framework nem build</li>
+                <li>Base de demonstração gerada com dados 100% fictícios</li>
+              </ul>
+              <p class="stack">Node.js, Express, SQLite e JavaScript</p>
+              <a class="link-projeto" href="https://github.com/Corcelliz/crm-system">
+                Ver o código do CRM System no GitHub
+              </a>
+            </div>
+          </article>
+
+          <article class="projeto" aria-labelledby="projeto-tokeneye">
+            <figure class="projeto-tela">
+              <img
+                src="assets/images/projects/tokeneye.png"
+                alt="Painel do tokenEye com limites do plano, tokens de hoje, da semana e do mês, gráfico por dia e divisão por modelo"
+                width="1084"
+                height="681"
+                loading="lazy"
+              />
+            </figure>
+            <div class="projeto-texto">
+              <h3 id="projeto-tokeneye">tokenEye</h3>
+              <p class="projeto-resumo">
+                App desktop que mostra, ao vivo, quanto do plano do Claude eu uso.
+              </p>
+              <p>
+                Lê os registros locais do Claude Code e mostra os tokens de hoje, dos
+                últimos 7 dias e do mês, um gráfico diário, a divisão por modelo e os
+                limites da sessão e da semana.
+              </p>
+              <ul class="destaques" role="list">
+                <li>
+                  Funciona 100% offline, sem telemetria, e lê só metadados, nunca o conteúdo
+                  das conversas
+                </li>
+                <li>Remove mensagens repetidas dos registros, que mais que dobravam o total</li>
+                <li>49 testes automatizados e janela Electron com isolamento e CSP</li>
+              </ul>
+              <p class="stack">Electron, Node.js e JavaScript</p>
+              <a class="link-projeto" href="https://github.com/Corcelliz/tokenEye">
+                Ver o código do tokenEye no GitHub
+              </a>
+            </div>
+          </article>
+
+          <article class="projeto" aria-labelledby="projeto-supatasks">
+            <figure class="projeto-tela">
+              <img
+                src="assets/images/projects/supatasks.png"
+                alt="Lista de tarefas do Supatasks com cinco tarefas, três delas concluídas"
+                width="1280"
+                height="800"
+                loading="lazy"
+              />
+            </figure>
+            <div class="projeto-texto">
+              <h3 id="projeto-supatasks">Supatasks</h3>
+              <p class="projeto-resumo">
+                Lista de tarefas na nuvem com acesso restrito a um administrador.
+              </p>
+              <p>
+                Criar, concluir e apagar tarefas, com login por e-mail e senha e os dados
+                guardados em um banco Postgres no Supabase.
+              </p>
+              <ul class="destaques" role="list">
+                <li>
+                  Segurança no próprio banco com Row Level Security: sem permissão, o banco
+                  recusa a leitura e a escrita
+                </li>
+                <li>Chave de acesso fora do código versionado</li>
+                <li>Layout pensado para o celular, com botões de 44 px de altura</li>
+              </ul>
+              <p class="stack">JavaScript e Supabase (Postgres e Auth)</p>
+              <a class="link-projeto" href="https://github.com/Corcelliz/supatasks">
+                Ver o código do Supatasks no GitHub
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
     </main>
 
     <script src="js/main.js" defer></script>
