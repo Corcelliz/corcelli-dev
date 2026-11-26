@@ -64,13 +64,18 @@
       }
     </script>
 
-    <!-- Fontes: Archivo nos títulos, Roboto nos textos -->
+    <!-- Fontes: Archivo nos títulos, Roboto nos textos, JetBrains Mono nos detalhes de terminal -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=Roboto:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=JetBrains+Mono:wght@400;500&family=Roboto:wght@400;500;700&display=swap"
     />
+
+    <!-- Marca que o JavaScript está ativo (o menu do celular depende disso) -->
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
 
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/layout.css" />
@@ -82,10 +87,21 @@
 
     <header class="topo">
       <div class="container">
-        <a class="marca" href="#conteudo" aria-label="Guilherme Corcelli, início" translate="no">GC</a>
+        <a class="marca" href="#inicio" aria-label="Guilherme Corcelli, início" translate="no">
+          <span class="marca-selo" aria-hidden="true">GC</span>
+          <span class="marca-nome" aria-hidden="true">corcelli-dev</span>
+          <!-- "Pasta" atual, como num terminal: muda conforme a rolagem (js/main.js) -->
+          <span class="marca-caminho" aria-hidden="true">~/</span>
+        </a>
         <nav class="menu" aria-label="Principal">
-          <ul role="list">
+          <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu-lista">
+            <span class="menu-botao-icone" aria-hidden="true"></span>
+            Menu
+          </button>
+          <ul class="menu-lista" id="menu-lista" role="list">
             <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#tecnologias">Tecnologias</a></li>
+            <li><a href="#trajetoria">Trajetória</a></li>
             <li><a href="#projetos">Projetos</a></li>
             <li><a href="#contato">Contato</a></li>
           </ul>
@@ -95,25 +111,30 @@
     </header>
 
     <main id="conteudo">
-      <section class="abertura" aria-labelledby="nome">
+      <!-- ========== Abertura ========== -->
+      <section class="abertura" id="inicio" aria-labelledby="nome">
         <div class="container">
           <div>
-            <h1 class="nome" id="nome"><span>Guilherme</span> <span>Corcelli</span></h1>
+            <p class="prompt" aria-hidden="true" translate="no">~/corcelli-dev $ whoami</p>
+            <h1 class="nome" id="nome"><span>Guilherme</span> <span>Corcelli.</span></h1>
+            <p class="papel">
+              <span class="so-leitor">Desenvolvimento web e automação com IA</span>
+              <!-- O JavaScript "digita" as frases aqui; leitores de tela ouvem a frase acima -->
+              <span class="papel-texto" aria-hidden="true">desenvolvimento web</span>
+              <span class="papel-cursor" aria-hidden="true"></span>
+            </p>
             <p class="apresentacao">
-              Desenvolvo sistemas web e automações com IA, do banco de dados à tela.
+              Desenvolvo sistemas web e automações com IA, do banco de dados à tela, em
+              etapas pequenas e testadas.
             </p>
-            <p class="local">São Paulo, SP. Aberto a trabalho remoto.</p>
+            <p class="status">Aberto a trabalho remoto, de São Paulo, SP</p>
             <div class="acoes">
-              <a class="botao" href="#contato">Fale comigo</a>
-              <a class="botao botao--contorno" href="#projetos">Ver projetos</a>
+              <a class="botao" href="#projetos">Ver projetos</a>
+              <a class="botao botao--contorno" href="https://github.com/Corcelliz">
+                <svg aria-hidden="true"><use href="assets/icons/tecnologias.svg#i-github"></use></svg>
+                GitHub
+              </a>
             </div>
-            <!-- Atalho para o trabalho: quem avalia vê os projetos logo na abertura -->
-            <p class="vitrine">
-              Publicados, com código aberto:
-              <a href="#crm-system" translate="no">CRM System</a>,
-              <a href="#tokeneye" translate="no">tokenEye</a> e
-              <a href="#supatasks" translate="no">Supatasks</a>.
-            </p>
           </div>
 
           <figure class="retrato">
@@ -127,69 +148,157 @@
                 fetchpriority="high"
               />
             </picture>
+            <figcaption class="retrato-selo">São Paulo, SP</figcaption>
           </figure>
         </div>
       </section>
 
+      <!-- ========== 01 Sobre ========== -->
       <section class="secao sobre" id="sobre" aria-labelledby="sobre-titulo">
         <div class="container">
-          <div class="sobre-texto">
+          <header class="secao-topo">
+            <p class="secao-rotulo" aria-hidden="true">[<span>01</span>] sobre</p>
             <h2 class="secao-titulo" id="sobre-titulo">Sobre mim</h2>
-            <p>
-              Sou formado em Tecnologia da Informação e trabalho com atendimento comercial
-              a empresas no setor de telecom: sou o ponto de contato de uma equipe de
-              consultores, tiro dúvidas sobre planos e regras e cuido do pós-venda. Esse
-              dia a dia me ensinou a entender processos e a transformar um problema de
-              negócio em passos claros.
-            </p>
-            <p>
-              É assim que construo software: começo pelo problema, avanço em etapas
-              pequenas e testo cada uma antes de dar por pronta. Uso o
-              <span translate="no">Claude Code</span> para planejar, escrever, revisar e
-              testar, e faço questão de entender cada decisão do código.
-            </p>
-            <p>
-              Procuro uma vaga remota em desenvolvimento web ou automação com IA, e também
-              aceito projetos pontuais.
-            </p>
+          </header>
 
-            <h3 class="sub-titulo">O que uso e onde</h3>
-            <dl class="ferramentas">
-              <div>
-                <dt>Front-end</dt>
-                <dd>
-                  HTML, CSS, JavaScript, layout responsivo e acessibilidade
-                  <span class="uso">Em todos os projetos e neste site</span>
-                </dd>
+          <div class="sobre-grade">
+            <div class="sobre-texto">
+              <p class="destaque">
+                Sou formado em Tecnologia da Informação e desenvolvo sistemas web e
+                automações com IA, do banco de dados à tela.
+              </p>
+              <p>
+                Hoje trabalho com atendimento comercial a empresas no setor de telecom: sou o
+                ponto de contato de uma equipe de consultores, tiro dúvidas sobre planos e
+                regras e cuido do pós-venda. Esse dia a dia me ensinou a entender processos e
+                a transformar um problema de negócio em passos claros.
+              </p>
+              <p>
+                É assim que construo software: começo pelo problema, avanço em etapas
+                pequenas e testo cada uma antes de dar por pronta. Uso o
+                <span translate="no">Claude Code</span> para planejar, escrever, revisar e
+                testar, e faço questão de entender cada decisão do código.
+              </p>
+              <p>
+                Procuro uma vaga remota em desenvolvimento web ou automação com IA, e também
+                aceito projetos pontuais.
+              </p>
+            </div>
+
+            <dl class="fatos">
+              <div class="fato fato--numero cartao">
+                <dt>sistemas publicados, com código aberto no GitHub</dt>
+                <dd>3</dd>
               </div>
-              <div>
-                <dt>Back-end e dados</dt>
-                <dd>
-                  Node.js, Express, SQLite e Supabase (Postgres, Auth e RLS)
-                  <span class="uso">No CRM System e no Supatasks</span>
-                </dd>
+              <div class="fato cartao">
+                <dt>formação</dt>
+                <dd>Tecnologia da Informação</dd>
               </div>
-              <div>
-                <dt>Desktop</dt>
-                <dd>
-                  Electron
-                  <span class="uso">No tokenEye</span>
-                </dd>
+              <div class="fato cartao">
+                <dt>atuação</dt>
+                <dd>Remoto, de São Paulo</dd>
               </div>
-              <div>
-                <dt>Ferramentas</dt>
-                <dd>
-                  Git, GitHub, Vercel e <span translate="no">Claude Code</span>
-                  <span class="uso">Em todos os projetos; a Vercel publica este site</span>
-                </dd>
+              <div class="fato fato--largo cartao">
+                <dt>foco</dt>
+                <dd>Sistemas web e automação com IA</dd>
               </div>
             </dl>
           </div>
+        </div>
+      </section>
+
+      <!-- ========== 02 Tecnologias ========== -->
+      <section class="secao" id="tecnologias" aria-labelledby="tecnologias-titulo">
+        <div class="container">
+          <header class="secao-topo">
+            <p class="secao-rotulo" aria-hidden="true">[<span>02</span>] tecnologias</p>
+            <h2 class="secao-titulo" id="tecnologias-titulo">O que uso no dia a dia</h2>
+            <p>Cada tecnologia com o projeto em que eu usei, no lugar de uma lista solta.</p>
+          </header>
+
+          <ul class="tecnologias-grade" role="list">
+              <li class="tecnologia cartao">
+                <svg aria-hidden="true"><use href="assets/icons/tecnologias.svg#i-html"></use></svg>
+                <strong translate="no">HTML</strong>
+                <span>Em todos os projetos</span>
+              </li>
+              <li class="tecnologia cartao">
+                <svg aria-hidden="true"><use href="assets/icons/tecnologias.svg#i-css"></use></svg>
+                <strong translate="no">CSS</strong>
+                <span>Em todos os projetos</span>
+              </li>
+              <li class="tecnologia cartao">
+                <svg aria-hidden="true"><use href="assets/icons/tecnologias.svg#i-js"></use></svg>
+                <strong translate="no">JavaScript</strong>
+                <span>Em todos os projetos</span>
+              </li>
+              <li class="tecnologia cartao">
+                <svg aria-hidden="true"><use href="assets/icons/tecnologias.svg#i-node"></use></svg>
+                <strong translate="no">Node.js</strong>
+                <span>CRM System e tokenEye</span>
+              </li>
+              <li class="tecnologia cartao">
+                <svg aria-hidden="true"><use href="assets/icons/tecnologias.svg#i-express"></use></svg>
+                <strong translate="no">Express</strong>
+                <span>CRM System</span>
+              </li>
+              <li class="tecnologia cartao">
+                <svg aria-hidden="true"><use href="assets/icons/tecnologias.svg#i-sqlite"></use></svg>
+                <strong translate="no">SQLite</strong>
+                <span>CRM System</span>
+              </li>
+              <li class="tecnologia cartao">
+                <svg aria-hidden="true"><use href="assets/icons/tecnologias.svg#i-supabase"></use></svg>
+                <strong translate="no">Supabase</strong>
+                <span>Supatasks: Postgres, login e RLS</span>
+              </li>
+              <li class="tecnologia cartao">
+                <svg aria-hidden="true"><use href="assets/icons/tecnologias.svg#i-electron"></use></svg>
+                <strong translate="no">Electron</strong>
+                <span>tokenEye</span>
+              </li>
+              <li class="tecnologia cartao">
+                <svg aria-hidden="true"><use href="assets/icons/tecnologias.svg#i-git"></use></svg>
+                <strong translate="no">Git</strong>
+                <span>Commits pequenos, um assunto por vez</span>
+              </li>
+              <li class="tecnologia cartao">
+                <svg aria-hidden="true"><use href="assets/icons/tecnologias.svg#i-github"></use></svg>
+                <strong translate="no">GitHub</strong>
+                <span>Código aberto de todos os projetos</span>
+              </li>
+              <li class="tecnologia cartao">
+                <svg aria-hidden="true"><use href="assets/icons/tecnologias.svg#i-vercel"></use></svg>
+                <strong translate="no">Vercel</strong>
+                <span>Publica este site</span>
+              </li>
+              <li class="tecnologia cartao">
+                <svg aria-hidden="true"><use href="assets/icons/tecnologias.svg#i-claude"></use></svg>
+                <strong translate="no">Claude Code</strong>
+                <span>Planejar, revisar e testar</span>
+              </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ========== 03 Trajetória ========== -->
+      <section class="secao" id="trajetoria" aria-labelledby="trajetoria-titulo">
+        <div class="container trajetoria-grade">
+          <div class="trajetoria-texto">
+            <header class="secao-topo">
+              <p class="secao-rotulo" aria-hidden="true">[<span>03</span>] trajetória</p>
+              <h2 class="secao-titulo" id="trajetoria-titulo">Do atendimento ao código</h2>
+            </header>
+            <p>
+              Uma linha de estações: de onde eu vim, onde estou e para onde vou. Role a
+              página para percorrer a linha.
+            </p>
+          </div>
 
           <div class="trajetoria">
-            <h3 class="so-leitor">Trajetória</h3>
             <ol class="linha" role="list">
               <li class="estacao" style="--i: 0">
+                <span class="estacao-quando">formação</span>
                 <strong>Graduação em Tecnologia da Informação</strong>
                 <p>
                   Primeiros sites em HTML, CSS e JavaScript e a primeira versão deste
@@ -197,41 +306,48 @@
                 </p>
               </li>
               <li class="estacao" style="--i: 1">
+                <span class="estacao-quando">hoje</span>
                 <strong>Atendimento comercial a empresas</strong>
                 <p>Suporte a consultores e clientes empresariais no setor de telecom.</p>
               </li>
               <li class="estacao" style="--i: 2">
+                <span class="estacao-quando">2026</span>
                 <strong>IA e automação</strong>
                 <p>
-                  Em 2026, estudo IA generativa e passo a construir com o
+                  Estudo IA generativa e passo a construir com o
                   <span translate="no">Claude Code</span>.
                 </p>
               </li>
               <li class="estacao" style="--i: 3">
+                <span class="estacao-quando">nov. 2026</span>
                 <strong>Três sistemas publicados</strong>
-                <p>CRM System, tokenEye e Supatasks, em novembro de 2026.</p>
+                <p>CRM System, tokenEye e Supatasks, com código aberto.</p>
               </li>
               <li class="estacao estacao--destino" style="--i: 4">
-                <strong>Próximo destino</strong>
-                <p>Trabalho remoto com desenvolvimento web e automação com IA.</p>
+                <span class="estacao-quando">próximo destino</span>
+                <strong>Trabalho remoto</strong>
+                <p>Desenvolvimento web e automação com IA.</p>
               </li>
             </ol>
           </div>
         </div>
       </section>
 
-      <section class="secao projetos" id="projetos" aria-labelledby="projetos-titulo">
+      <!-- ========== 04 Projetos ========== -->
+      <section class="secao" id="projetos" aria-labelledby="projetos-titulo">
         <div class="container">
           <header class="secao-topo">
-            <h2 class="secao-titulo" id="projetos-titulo">Projetos</h2>
+            <p class="secao-rotulo" aria-hidden="true">[<span>04</span>] projetos</p>
+            <h2 class="secao-titulo" id="projetos-titulo">Projetos publicados</h2>
             <p>
-              Três sistemas que construí em 2026, cada um com o desafio, as decisões e o
-              resultado. O código de todos está aberto no GitHub, com instruções para
-              rodar. As telas usam dados fictícios.
+              Três sistemas que construí em 2026. O código de todos está aberto no GitHub,
+              com instruções para rodar, e cada um tem um estudo de caso curto: o desafio, as
+              decisões e o resultado. As telas usam dados fictícios.
             </p>
           </header>
 
-          <article class="projeto" id="crm-system" aria-labelledby="projeto-crm">
+          <div class="projetos-grade">
+          <article class="projeto cartao projeto--destaque" id="crm-system" aria-labelledby="projeto-crm">
             <figure class="projeto-tela">
               <picture>
                 <source srcset="assets/images/projects/crm-system.webp" type="image/webp" />
@@ -246,50 +362,49 @@
               </picture>
             </figure>
             <div class="projeto-texto">
+              <p class="projeto-meta" translate="no"><span>01</span><span>Node.js</span><span>Express</span><span>SQLite</span></p>
               <h3 id="projeto-crm" translate="no">CRM System</h3>
-              <p class="projeto-resumo">
-                Sistema de gestão comercial com área do colaborador e área do administrador.
-              </p>
-              <p>
-                Funil de vendas com arrastar e soltar, carteira de clientes, tarefas, meta do
-                mês e um painel para o administrador acompanhar a equipe e a auditoria.
-              </p>
-              <dl class="caso">
-                <div>
-                  <dt>Desafio</dt>
-                  <dd>
-                    Dois perfis de acesso, colaborador e administrador, com a segurança feita
-                    no servidor e sem framework.
-                  </dd>
-                </div>
-                <div>
-                  <dt>Decisões</dt>
-                  <dd>
-                    Login validado no servidor, sessão em cookie httpOnly, proteção CSRF e
-                    bloqueio por tentativas. Banco SQLite nativo do Node.js e front-end sem
-                    etapa de build.
-                  </dd>
-                </div>
-                <div>
-                  <dt>Resultado</dt>
-                  <dd>
-                    Versão 1 publicada com licença MIT. Roda com <code>npm install</code> e
-                    <code>npm start</code> e já cria uma base de demonstração 100% fictícia.
-                  </dd>
-                </div>
-                <div>
-                  <dt>Próximo passo</dt>
-                  <dd>Testes automatizados.</dd>
-                </div>
-              </dl>
-              <p class="stack">Node.js, Express, SQLite e JavaScript</p>
+              <p class="projeto-resumo">Sistema de gestão comercial com área do colaborador e área do administrador.</p>
+              <p>Funil de vendas com arrastar e soltar, carteira de clientes, tarefas, meta do mês e um painel para o administrador acompanhar a equipe e a auditoria.</p>
+              <details class="caso">
+                <summary>Ver o estudo de caso</summary>
+                <dl>
+                    <div>
+                      <dt>Desafio</dt>
+                      <dd>
+                        Dois perfis de acesso, colaborador e administrador, com a segurança feita
+                        no servidor e sem framework.
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>Decisões</dt>
+                      <dd>
+                        Login validado no servidor, sessão em cookie httpOnly, proteção CSRF e
+                        bloqueio por tentativas. Banco SQLite nativo do Node.js e front-end sem
+                        etapa de build.
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>Resultado</dt>
+                      <dd>
+                        Versão 1 publicada com licença MIT. Roda com <code>npm install</code> e
+                        <code>npm start</code> e já cria uma base de demonstração 100% fictícia.
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>Próximo passo</dt>
+                      <dd>Testes automatizados.</dd>
+                    </div>
+                  </dl>
+              </details>
               <a class="link-projeto" href="https://github.com/Corcelliz/crm-system">
                 Ver o código do CRM System no GitHub
+                <svg aria-hidden="true"><use href="assets/icons/tecnologias.svg#i-externo"></use></svg>
               </a>
             </div>
           </article>
 
-          <article class="projeto" id="tokeneye" aria-labelledby="projeto-tokeneye">
+          <article class="projeto cartao" id="tokeneye" aria-labelledby="projeto-tokeneye">
             <figure class="projeto-tela">
               <picture>
                 <source srcset="assets/images/projects/tokeneye.webp" type="image/webp" />
@@ -304,50 +419,48 @@
               </picture>
             </figure>
             <div class="projeto-texto">
+              <p class="projeto-meta" translate="no"><span>02</span><span>Electron</span><span>Node.js</span></p>
               <h3 id="projeto-tokeneye" translate="no">tokenEye</h3>
-              <p class="projeto-resumo">
-                App desktop que mostra, ao vivo, quanto do plano do Claude eu uso.
-              </p>
-              <p>
-                Lê os registros locais do <span translate="no">Claude Code</span> e mostra os
-                tokens de hoje, dos últimos 7 dias e do mês, um gráfico diário, a divisão por
-                modelo e por projeto e os limites da sessão e da semana.
-              </p>
-              <dl class="caso">
-                <div>
-                  <dt>Desafio</dt>
-                  <dd>
-                    Acompanhar o uso do plano ao vivo sem mandar nenhum dado para fora do
-                    computador.
-                  </dd>
-                </div>
-                <div>
-                  <dt>Decisões</dt>
-                  <dd>
-                    Ler só os metadados dos registros, nunca o conteúdo das conversas. Funciona
-                    100% offline, sem telemetria, numa janela Electron com isolamento e CSP.
-                  </dd>
-                </div>
-                <div>
-                  <dt>Resultado</dt>
-                  <dd>
-                    Os registros repetiam mensagens e mais que dobravam o total; a contagem
-                    passou a remover as repetidas. O projeto tem 67 testes automatizados.
-                  </dd>
-                </div>
-                <div>
-                  <dt>Próximo passo</dt>
-                  <dd>Instalador e ícone próprio, numa versão 3.</dd>
-                </div>
-              </dl>
-              <p class="stack">Electron, Node.js e JavaScript</p>
+              <p class="projeto-resumo">App desktop que mostra, ao vivo, quanto do plano do Claude eu uso.</p>
+              <p>Lê os registros locais do <span translate="no">Claude Code</span> e mostra tokens do dia, da semana e do mês, a divisão por modelo e por projeto e os limites do plano.</p>
+              <details class="caso">
+                <summary>Ver o estudo de caso</summary>
+                <dl>
+                    <div>
+                      <dt>Desafio</dt>
+                      <dd>
+                        Acompanhar o uso do plano ao vivo sem mandar nenhum dado para fora do
+                        computador.
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>Decisões</dt>
+                      <dd>
+                        Ler só os metadados dos registros, nunca o conteúdo das conversas. Funciona
+                        100% offline, sem telemetria, numa janela Electron com isolamento e CSP.
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>Resultado</dt>
+                      <dd>
+                        Os registros repetiam mensagens e mais que dobravam o total; a contagem
+                        passou a remover as repetidas. O projeto tem 67 testes automatizados.
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>Próximo passo</dt>
+                      <dd>Instalador e ícone próprio, numa versão 3.</dd>
+                    </div>
+                  </dl>
+              </details>
               <a class="link-projeto" href="https://github.com/Corcelliz/tokenEye">
                 Ver o código do tokenEye no GitHub
+                <svg aria-hidden="true"><use href="assets/icons/tecnologias.svg#i-externo"></use></svg>
               </a>
             </div>
           </article>
 
-          <article class="projeto" id="supatasks" aria-labelledby="projeto-supatasks">
+          <article class="projeto cartao" id="supatasks" aria-labelledby="projeto-supatasks">
             <figure class="projeto-tela">
               <picture>
                 <source srcset="assets/images/projects/supatasks.webp" type="image/webp" />
@@ -362,88 +475,94 @@
               </picture>
             </figure>
             <div class="projeto-texto">
+              <p class="projeto-meta" translate="no"><span>03</span><span>JavaScript</span><span>Supabase</span></p>
               <h3 id="projeto-supatasks" translate="no">Supatasks</h3>
-              <p class="projeto-resumo">
-                Lista de tarefas na nuvem com acesso restrito a um administrador.
-              </p>
-              <p>
-                Criar, concluir e apagar tarefas, com login por e-mail e senha e os dados
-                guardados em um banco Postgres no Supabase.
-              </p>
-              <dl class="caso">
-                <div>
-                  <dt>Desafio</dt>
-                  <dd>
-                    Aprender back-end como serviço: banco, login e permissões sem escrever um
-                    servidor.
-                  </dd>
-                </div>
-                <div>
-                  <dt>Decisões</dt>
-                  <dd>
-                    Segurança no próprio banco com Row Level Security: sem permissão, o banco
-                    recusa a leitura e a escrita. Chave de acesso fora do código versionado.
-                  </dd>
-                </div>
-                <div>
-                  <dt>Resultado</dt>
-                  <dd>
-                    Versão 2 publicada, com layout pensado para o celular. No caminho, aprendi
-                    a diagnosticar o acesso pelo status HTTP: 401 é falta de identificação e
-                    403 é a regra do banco barrando.
-                  </dd>
-                </div>
-              </dl>
-              <p class="stack">JavaScript e Supabase (Postgres e Auth)</p>
+              <p class="projeto-resumo">Lista de tarefas na nuvem com acesso restrito a um administrador.</p>
+              <p>Criar, concluir e apagar tarefas, com login por e-mail e senha e os dados guardados em um banco Postgres no Supabase.</p>
+              <details class="caso">
+                <summary>Ver o estudo de caso</summary>
+                <dl>
+                    <div>
+                      <dt>Desafio</dt>
+                      <dd>
+                        Aprender back-end como serviço: banco, login e permissões sem escrever um
+                        servidor.
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>Decisões</dt>
+                      <dd>
+                        Segurança no próprio banco com Row Level Security: sem permissão, o banco
+                        recusa a leitura e a escrita. Chave de acesso fora do código versionado.
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>Resultado</dt>
+                      <dd>
+                        Versão 2 publicada, com layout pensado para o celular. No caminho, aprendi
+                        a diagnosticar o acesso pelo status HTTP: 401 é falta de identificação e
+                        403 é a regra do banco barrando.
+                      </dd>
+                    </div>
+                  </dl>
+              </details>
               <a class="link-projeto" href="https://github.com/Corcelliz/supatasks">
                 Ver o código do Supatasks no GitHub
+                <svg aria-hidden="true"><use href="assets/icons/tecnologias.svg#i-externo"></use></svg>
               </a>
             </div>
           </article>
+          </div>
         </div>
       </section>
 
+      <!-- ========== 05 Contato ========== -->
       <section class="secao contato" id="contato" aria-labelledby="contato-titulo">
         <div class="container">
-          <h2 class="secao-titulo" id="contato-titulo">Contato</h2>
-          <p>
-            Quer conversar sobre uma vaga remota ou um projeto? O jeito mais rápido de falar
-            comigo é por e-mail.
-          </p>
-          <a class="email" href="mailto:corcellidev@gmail.com">corcellidev@gmail.com</a>
-          <div class="acoes">
-            <a
-              class="botao"
-              href="mailto:corcellidev@gmail.com?subject=Contato%20pelo%20portf%C3%B3lio"
-              >Enviar e-mail</a
-            >
-            <button
-              class="botao botao--contorno"
-              type="button"
-              data-copiar="corcellidev@gmail.com"
-            >
-              Copiar e-mail
-            </button>
-          </div>
+          <header class="secao-topo">
+            <p class="secao-rotulo" aria-hidden="true">[<span>05</span>] contato</p>
+            <h2 class="secao-titulo" id="contato-titulo">Vamos conversar?</h2>
+            <p>
+              Estou aberto a vagas remotas em desenvolvimento web e automação com IA, e
+              também a projetos pontuais. O jeito mais rápido de falar comigo é por e-mail.
+            </p>
+          </header>
+
+          <button class="email-copiar" type="button" data-copiar="corcellidev@gmail.com">
+            <span>corcellidev@gmail.com</span>
+            <svg aria-hidden="true"><use href="assets/icons/tecnologias.svg#i-copiar"></use></svg>
+            <span class="so-leitor">Copiar o e-mail</span>
+          </button>
           <p class="aviso" role="status" aria-live="polite"></p>
-          <p class="contato-extra">
-            O código de todos os projetos está no meu
-            <a href="https://github.com/Corcelliz">GitHub</a>.
-          </p>
+
+          <ul class="canais" role="list">
+            <li>
+              <a class="canal cartao" href="mailto:corcellidev@gmail.com?subject=Contato%20pelo%20portf%C3%B3lio">
+                <svg aria-hidden="true"><use href="assets/icons/tecnologias.svg#i-email"></use></svg>
+                Enviar e-mail
+              </a>
+            </li>
+            <li>
+              <a class="canal cartao" href="https://github.com/Corcelliz">
+                <svg aria-hidden="true"><use href="assets/icons/tecnologias.svg#i-github"></use></svg>
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a class="canal cartao" href="https://github.com/Corcelliz/corcelli-dev">
+                <svg aria-hidden="true"><use href="assets/icons/tecnologias.svg#i-codigo"></use></svg>
+                Código deste site
+              </a>
+            </li>
+          </ul>
         </div>
       </section>
     </main>
 
     <footer class="rodape">
       <div class="container">
-        <p>
-          © 2026 Guilherme Corcelli. Feito à mão em HTML, CSS e JavaScript, sem framework.
-          Atualizado em novembro de 2026.
-        </p>
-        <ul role="list">
-          <li><a href="https://github.com/Corcelliz">GitHub</a></li>
-          <li><a href="https://github.com/Corcelliz/corcelli-dev">Código deste site</a></li>
-        </ul>
+        <p>© 2026 Guilherme Corcelli. Atualizado em novembro de 2026.</p>
+        <p>Feito à mão em HTML, CSS e JavaScript, sem framework.</p>
       </div>
     </footer>
 

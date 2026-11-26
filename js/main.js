@@ -1,18 +1,80 @@
 // Portfólio de Guilherme Corcelli. JavaScript puro, sem dependências.
 
-// 1) Linha da trajetória: o desenho acompanha a rolagem.
+const reduzirMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// Limita um número ao intervalo de 0 a 1
+const limitar = (n) => Math.min(1, Math.max(0, n));
+
+// 1) Menu do celular: abre e fecha o painel com os links.
+const botaoMenu = document.querySelector(".menu-botao");
+const listaMenu = document.querySelector(".menu-lista");
+
+if (botaoMenu && listaMenu) {
+  const fecharMenu = () => {
+    botaoMenu.setAttribute("aria-expanded", "false");
+    listaMenu.classList.remove("aberta");
+  };
+
+  botaoMenu.addEventListener("click", () => {
+    const abrir = botaoMenu.getAttribute("aria-expanded") !== "true";
+    botaoMenu.setAttribute("aria-expanded", String(abrir));
+    listaMenu.classList.toggle("aberta", abrir);
+  });
+
+  // Ao escolher uma seção, o painel fecha sozinho
+  listaMenu.addEventListener("click", (evento) => {
+    if (evento.target.closest("a")) fecharMenu();
+  });
+
+  // Esc fecha o painel e devolve o foco ao botão
+  document.addEventListener("keydown", (evento) => {
+    if (evento.key === "Escape" && listaMenu.classList.contains("aberta")) {
+      fecharMenu();
+      botaoMenu.focus();
+    }
+  });
+}
+
+// 2) Papel "digitado" na abertura: escreve, espera, apaga e passa para a próxima frase.
+//    Com "reduzir movimento", fica só a primeira frase, parada.
+const papel = document.querySelector(".papel-texto");
+const frases = ["desenvolvimento web", "automação com IA", "do banco de dados à tela"];
+
+if (papel && !reduzirMovimento) {
+  let frase = 0;
+  let letras = frases[0].length;
+  let apagando = true;
+
+  const passo = () => {
+    const atual = frases[frase];
+    letras += apagando ? -1 : 1;
+    papel.textContent = atual.slice(0, letras);
+
+    let espera = apagando ? 35 : 70;
+    if (!apagando && letras === atual.length) {
+      apagando = true;
+      espera = 2200; // tempo para ler a frase inteira
+    } else if (apagando && letras === 0) {
+      apagando = false;
+      frase = (frase + 1) % frases.length;
+      espera = 350;
+    }
+    setTimeout(passo, espera);
+  };
+
+  // Começa com a primeira frase inteira na tela, como se já tivesse sido digitada
+  setTimeout(passo, 2600);
+}
+
+// 3) Linha da trajetória: o desenho acompanha a rolagem.
 //    No computador a trajetória fica fixa na tela (position: sticky no CSS) e
 //    a linha avança conforme você rola a seção. No celular ela não fica fixa:
 //    a linha é desenhada à medida que passa pela tela.
 //    Quem pediu ao sistema para reduzir movimento vê a linha pronta, sem animação.
 const linha = document.querySelector(".linha");
 const trajetoria = document.querySelector(".trajetoria");
-const cena = document.querySelector(".sobre .container");
+const cena = document.querySelector(".trajetoria-grade");
 const estacoes = [...document.querySelectorAll(".estacao")];
-const podeAnimar = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-// Limita um número ao intervalo de 0 a 1
-const limitar = (n) => Math.min(1, Math.max(0, n));
 
 // Quanto da trajetória já foi percorrido (0 a 1), conforme a posição na tela
 function calcularProgresso() {
@@ -24,7 +86,8 @@ function calcularProgresso() {
     const topoFixo = parseFloat(getComputedStyle(trajetoria).top) || 0;
     const caixa = cena.getBoundingClientRect();
     const percurso = caixa.height - trajetoria.offsetHeight;
-    return percurso > 0 ? limitar((topoFixo - caixa.top) / percurso) : 1;
+    // Começa um pouco antes de grudar, para a primeira estação já aparecer
+    return percurso > 0 ? limitar((topoFixo + altura * 0.25 - caixa.top) / (percurso + altura * 0.25)) : 1;
   }
 
   // Modo solto (celular): desenha enquanto a linha cruza a tela
@@ -37,8 +100,6 @@ function atualizarLinha() {
   const total = estacoes.length;
   let atual = -1;
 
-  linha.style.setProperty("--p", progresso.toFixed(4));
-
   estacoes.forEach((estacao, i) => {
     // Cada estação ocupa uma fatia igual do percurso
     const trecho = limitar(progresso * total - i);
@@ -50,7 +111,7 @@ function atualizarLinha() {
   estacoes.forEach((estacao, i) => estacao.classList.toggle("atual", i === atual));
 }
 
-if (linha && trajetoria && cena && estacoes.length && podeAnimar) {
+if (linha && trajetoria && cena && estacoes.length && !reduzirMovimento) {
   document.documentElement.classList.add("anima");
 
   // Recalcula no máximo uma vez por quadro, para a rolagem ficar leve
@@ -69,8 +130,39 @@ if (linha && trajetoria && cena && estacoes.length && podeAnimar) {
   atualizarLinha();
 }
 
-// 2) Copiar e-mail: alternativa ao "Enviar e-mail" para quem não usa
-//    um programa de e-mail no computador. Confirma na tela o que aconteceu.
+// 4) Menu e "pasta" do cabeçalho: marcam a seção que está na tela.
+//    aria-current também é anunciado por leitores de tela.
+const linksMenu = [...document.querySelectorAll('.menu-lista a[href^="#"]')];
+const caminho = document.querySelector(".marca-caminho");
+const secoes = [...document.querySelectorAll("main > section[id]")];
+
+if ("IntersectionObserver" in window && secoes.length) {
+  const marcar = (id) => {
+    linksMenu.forEach((link) => {
+      if (link.getAttribute("href") === `#${id}`) {
+        link.setAttribute("aria-current", "true");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+    if (caminho) caminho.textContent = id === "inicio" ? "~/" : `~/${id}`;
+  };
+
+  // A seção "atual" é a que cruza uma faixa fina perto do topo da tela
+  const vigia = new IntersectionObserver(
+    (entradas) => {
+      entradas.forEach((entrada) => {
+        if (entrada.isIntersecting) marcar(entrada.target.id);
+      });
+    },
+    { rootMargin: "-30% 0px -65% 0px" }
+  );
+
+  secoes.forEach((secao) => vigia.observe(secao));
+}
+
+// 5) Copiar e-mail: clicar no endereço copia para a área de transferência
+//    e confirma na tela o que aconteceu.
 const botaoCopiar = document.querySelector("[data-copiar]");
 const aviso = document.querySelector(".aviso");
 
@@ -95,61 +187,13 @@ async function copiarTexto(texto) {
 }
 
 if (botaoCopiar && aviso) {
-  const textoOriginal = botaoCopiar.textContent.trim();
-
   botaoCopiar.addEventListener("click", async () => {
     const email = botaoCopiar.dataset.copiar;
 
     if (await copiarTexto(email)) {
-      botaoCopiar.textContent = "E-mail copiado";
-      aviso.textContent = `${email} foi copiado. É só colar no seu e-mail.`;
-      setTimeout(() => {
-        botaoCopiar.textContent = textoOriginal;
-      }, 2500);
+      aviso.textContent = `E-mail copiado: ${email}. É só colar na sua mensagem.`;
     } else {
       aviso.textContent = `Não foi possível copiar. Selecione o endereço ${email} e copie manualmente.`;
     }
   });
-}
-
-// 3) Menu: marca a seção que está na tela, para quem rola saber onde está.
-//    Usa aria-current, que leitores de tela também anunciam.
-const linksMenu = [...document.querySelectorAll('.menu a[href^="#"]:not(.botao)')];
-const secoesMenu = linksMenu
-  .map((link) => document.querySelector(link.getAttribute("href")))
-  .filter(Boolean);
-
-if ("IntersectionObserver" in window && secoesMenu.length) {
-  const marcar = (id) => {
-    linksMenu.forEach((link) => {
-      if (link.getAttribute("href") === `#${id}`) {
-        link.setAttribute("aria-current", "true");
-      } else {
-        link.removeAttribute("aria-current");
-      }
-    });
-  };
-
-  // A seção "atual" é a que cruza uma faixa fina perto do topo da tela
-  const vigia = new IntersectionObserver(
-    (entradas) => {
-      entradas.forEach((entrada) => {
-        if (entrada.isIntersecting) marcar(entrada.target.id);
-      });
-    },
-    { rootMargin: "-30% 0px -65% 0px" }
-  );
-
-  secoesMenu.forEach((secao) => vigia.observe(secao));
-
-  // Na abertura, nenhum item fica marcado
-  const abertura = document.querySelector(".abertura");
-  if (abertura) {
-    new IntersectionObserver(
-      ([entrada]) => {
-        if (entrada.isIntersecting) marcar(null);
-      },
-      { rootMargin: "-30% 0px -65% 0px" }
-    ).observe(abertura);
-  }
 }

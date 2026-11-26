@@ -1,7 +1,7 @@
 /* =========================================================
-   Layout: cabeçalho, seções e a grade principal.
-   A grade tem duas colunas: o conteúdo à esquerda e um trilho
-   à direita, onde ficam a foto e a linha da trajetória.
+   Layout: cabeçalho, seções, grades de cada parte e rodapé.
+   Ordem da página: abertura, sobre, tecnologias, trajetória,
+   projetos e contato.
    ========================================================= */
 
 .container {
@@ -9,29 +9,17 @@
   margin-inline: auto;
 }
 
-/* Posição horizontal da linha vermelha dentro do trilho.
-   A foto e a trajetória usam o mesmo valor para a linha parecer contínua. */
-:root {
-  --trilho: minmax(16rem, 21rem);
-  --eixo: 1.25rem;
-}
-
 /* ---------- Cabeçalho ---------- */
 
-/* O cabeçalho acompanha a rolagem: o menu fica sempre à mão */
+/* Fixo no topo: o menu fica sempre à mão */
 .topo {
   position: sticky;
   top: 0;
-  z-index: 5;
+  z-index: 10;
   border-bottom: 1px solid var(--fio);
-  background: color-mix(in srgb, var(--papel) 90%, transparent);
+  background: color-mix(in srgb, var(--papel) 88%, transparent);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-}
-
-/* Os links de âncora não ficam escondidos atrás do cabeçalho */
-html {
-  scroll-padding-top: 5rem;
 }
 
 .topo .container {
@@ -39,16 +27,45 @@ html {
   align-items: center;
   justify-content: space-between;
   gap: var(--e-3);
-  min-height: 4.5rem;
+  min-height: var(--cabecalho);
 }
 
+/* Marca: o quadrado vermelho do favicon, o nome do site e a "pasta" atual,
+   como num terminal (~/sobre, ~/projetos...). */
 .marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  text-decoration: none;
+}
+
+.marca-selo {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--raio);
+  background: var(--sinal-fundo);
+  color: var(--sinal-texto);
   font-family: var(--fonte-titulo);
   font-weight: 800;
   font-stretch: 115%;
-  font-size: var(--t-2);
+  font-size: 0.875rem;
   letter-spacing: -0.02em;
-  text-decoration: none;
+}
+
+.marca-nome {
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  font-stretch: 110%;
+  font-size: var(--t-1);
+  letter-spacing: -0.01em;
+}
+
+.marca-caminho {
+  font-family: var(--fonte-mono);
+  font-size: var(--t-mini);
+  color: var(--tinta-suave);
 }
 
 .menu {
@@ -57,12 +74,12 @@ html {
   gap: var(--e-3);
 }
 
-.menu ul {
+.menu-lista {
   display: flex;
   gap: var(--e-3);
 }
 
-.menu a:not(.botao) {
+.menu-lista a {
   display: inline-block;
   padding-block: 0.75rem;   /* alvo de toque com pelo menos 44 px */
   color: var(--tinta-suave);
@@ -71,12 +88,12 @@ html {
   font-weight: 500;
 }
 
-.menu a:not(.botao):hover {
+.menu-lista a:hover {
   color: var(--tinta);
 }
 
 /* Seção em que a pessoa está agora (marcada pelo js/main.js) */
-.menu a[aria-current="true"] {
+.menu-lista a[aria-current="true"] {
   color: var(--tinta);
   text-decoration: underline;
   text-decoration-color: var(--sinal);
@@ -84,169 +101,168 @@ html {
   text-underline-offset: 6px;
 }
 
-/* ---------- Abertura ---------- */
-
-.abertura .container {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) var(--trilho);
-  column-gap: var(--e-5);
-  align-items: end;
-  padding-top: var(--e-6);
-}
-
-.nome {
-  font-size: var(--t-nome);
-  font-weight: 800;
-  font-stretch: 112%;
-  letter-spacing: -0.035em;
-  line-height: 0.92;
-}
-
-.nome span {
-  display: block;
-}
-
-.apresentacao {
-  max-width: 34rem;
-  margin-top: var(--e-4);
-  font-size: var(--t-2);
-  line-height: 1.5;
-}
-
-.local {
-  margin-top: var(--e-2);
-  color: var(--tinta-suave);
-}
-
-.acoes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--e-2);
-  margin-top: var(--e-4);
-}
-
-/* Atalho para os projetos logo na abertura */
-.vitrine {
-  max-width: 34rem;
-  margin-top: var(--e-3);
-  color: var(--tinta-suave);
-  font-size: var(--t-0);
-}
-
-.vitrine a {
-  color: var(--tinta);
-  font-weight: 500;
-  text-decoration-color: var(--sinal);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-}
-
-.vitrine a:hover {
-  color: var(--sinal);
-}
-
-/* A foto fica no trilho; abaixo dela começa a linha vermelha,
-   que desce até o fim da abertura e continua na trajetória. */
-.retrato {
-  position: relative;
-  padding-bottom: var(--e-5);
-}
-
-.retrato img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  border-radius: var(--raio);
-}
-
-.retrato::after {
-  content: "";
-  position: absolute;
-  left: var(--eixo);
-  bottom: 0;
-  width: 4px;
-  height: var(--e-5);
-  margin-left: -2px;
-  background: var(--sinal);
+/* Botão do menu no celular: escondido no computador */
+.menu-botao {
+  display: none;
 }
 
 /* ---------- Seções ---------- */
 
 .secao {
   padding-block: var(--e-6);
+  border-top: 1px solid var(--fio);
+}
+
+/* Cabeçalho de cada seção: o rótulo em estilo terminal e o título */
+.secao-topo {
+  max-width: 44rem;
+  margin-bottom: var(--e-5);
+}
+
+.secao-rotulo {
+  display: inline-block;
+  margin-bottom: var(--e-2);
+  padding: 0.25rem 0.625rem;
+  border: 1px solid var(--fio);
+  border-radius: var(--raio);
+  background: var(--superficie);
+  color: var(--tinta-suave);
+  font-family: var(--fonte-mono);
+  font-size: var(--t-mini);
+}
+
+.secao-rotulo span {
+  color: var(--sinal);
 }
 
 .secao-titulo {
   font-size: var(--t-4);
-  font-weight: 700;
+  font-weight: 800;
   font-stretch: 108%;
-  letter-spacing: -0.02em;
-}
-
-/* Título da seção com uma linha de apoio */
-.secao-topo {
-  max-width: 38rem;
-  margin-bottom: var(--e-4);
+  letter-spacing: -0.025em;
 }
 
 .secao-topo p {
   margin-top: var(--e-2);
   color: var(--tinta-suave);
+  max-width: 38rem;
+}
+
+/* ---------- Abertura ---------- */
+
+.abertura {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fundo de pontinhos, que some em direção às bordas: dá textura sem distrair */
+.abertura::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--ponto-grade) 1.2px, transparent 1.2px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 70% 45%, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 70% at 70% 45%, #000 30%, transparent 75%);
+  pointer-events: none;
+}
+
+.abertura .container {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--e-5);
+  min-height: min(52rem, calc(100svh - var(--cabecalho)));
+  padding-block: var(--e-5);
 }
 
 /* ---------- Sobre ---------- */
 
-/* Topo menor: a linha da foto atravessa esse espaço até a trajetória */
-.sobre {
-  padding-top: var(--e-5);
-}
-
-.sobre .container {
+.sobre-grade {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) var(--trilho);
-  column-gap: var(--e-5);
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: var(--e-5);
+  align-items: start;
 }
 
 .sobre-texto {
-  max-width: 38rem;
+  max-width: 40rem;
 }
 
-.sobre-texto > p {
+.sobre-texto p + p {
   margin-top: var(--e-2);
 }
 
-.sobre-texto > .secao-titulo + p {
-  margin-top: var(--e-3);
+.sobre-texto .destaque {
+  font-size: var(--t-2);
+  line-height: 1.5;
 }
 
-.sub-titulo {
-  margin-top: var(--e-5);
-  font-size: var(--t-2);
-  font-weight: 700;
-  font-stretch: 105%;
+.sobre-texto p:not(.destaque) {
+  color: var(--tinta-suave);
+}
+
+/* ---------- Trajetória ----------
+   No computador, a cena (texto + linha) fica "presa" (sticky) enquanto a
+   seção rola, e a linha é desenhada conforme a rolagem (js/main.js).
+   A seção ganha altura extra para dar espaço à animação. Em telas baixas
+   ou estreitas, tudo volta a rolar junto com a página. */
+
+.trajetoria-grade {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: var(--e-5);
+  align-items: start;
+}
+
+.trajetoria-texto .secao-topo {
+  margin-bottom: var(--e-3);
+}
+
+.trajetoria-texto > p {
+  max-width: 34rem;
+  color: var(--tinta-suave);
+}
+
+@media (min-width: 52rem) and (min-height: 40rem) {
+  .trajetoria-grade {
+    min-height: 150vh;
+  }
+
+  .trajetoria,
+  .trajetoria-texto {
+    position: sticky;
+    top: calc(var(--cabecalho) + 2.5rem);
+  }
+}
+
+/* ---------- Projetos ---------- */
+
+.projetos-grade {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--e-3);
+}
+
+/* O primeiro projeto ocupa a linha inteira, com o print ao lado do texto */
+.projetos-grade > :first-child {
+  grid-column: 1 / -1;
 }
 
 /* ---------- Contato ---------- */
 
 .contato {
-  border-top: 1px solid var(--fio);
+  text-align: center;
 }
 
-.contato .container > p:not(.aviso, .contato-extra) {
-  max-width: 38rem;
-  margin-top: var(--e-3);
+.contato .secao-topo {
+  margin-inline: auto;
+  margin-bottom: var(--e-4);
 }
 
-.contato-extra {
-  margin-top: var(--e-1);
-  color: var(--tinta-suave);
-  font-size: var(--t-0);
-}
-
-.contato-extra a {
-  color: var(--tinta);
-  text-decoration-color: var(--sinal);
-  text-underline-offset: 3px;
+.contato .secao-topo p {
+  margin-inline: auto;
 }
 
 /* ---------- Rodapé ---------- */
@@ -281,70 +297,161 @@ html {
   text-decoration-color: var(--sinal);
 }
 
-/* ---------- Trajetória fixa na tela ----------
-   No computador, a trajetória fica "presa" (sticky) enquanto a seção
-   rola. A seção ganha altura extra para dar espaço à animação, que
-   avança conforme a rolagem (ver js/main.js). Em telas baixas ou
-   estreitas ela volta a rolar junto com a página. */
+/* ---------- Página 404 ---------- */
 
-@media (min-width: 52rem) and (min-height: 40rem) {
-  .sobre .container {
-    align-items: start;
-    min-height: 125vh;
-  }
-
-  .trajetoria {
-    position: sticky;
-    top: 6rem;
-  }
+.nao-encontrada {
+  border-top: 0;
 }
 
-/* Em telas altas o texto também fica fixo, e a cena toda "descansa" na tela */
-@media (min-width: 52rem) and (min-height: 54rem) {
-  .sobre .container {
-    min-height: 160vh;
-  }
+.nao-encontrada .secao-titulo + p {
+  max-width: 34rem;
+  margin-top: var(--e-3);
+  color: var(--tinta-suave);
+}
 
-  .sobre-texto {
-    position: sticky;
-    top: 6rem;
-  }
+.nao-encontrada .acoes {
+  margin-top: var(--e-4);
 }
 
 /* ---------- Telas menores ---------- */
 
-/* Tablet e notebook pequeno: trilho mais estreito e colunas mais próximas */
+/* Notebook pequeno e tablet: menu mais compacto */
 @media (max-width: 70rem) {
-  :root {
-    --trilho: minmax(14rem, 17rem);
+  .menu,
+  .menu-lista {
+    gap: var(--e-2);
   }
 
-  .abertura .container,
-  .sobre .container {
-    column-gap: var(--e-4);
+  .marca-caminho {
+    display: none;
   }
 }
 
+/* Tablet e celular: uma coluna e menu em painel */
 @media (max-width: 52rem) {
-  .sobre .container {
+  .abertura .container,
+  .sobre-grade,
+  .trajetoria-grade,
+  .projetos-grade {
     grid-template-columns: 1fr;
-    row-gap: var(--e-5);
   }
 
   .abertura .container {
-    grid-template-columns: 1fr;
-    row-gap: var(--e-4);
-    padding-top: var(--e-5);
+    min-height: 0;
+    gap: var(--e-4);
+    padding-block: var(--e-4) var(--e-5);
   }
 
-  /* No celular a foto vem antes do nome, menor */
-  .retrato {
+  /* No celular, a foto vem antes do nome */
+  .abertura .retrato {
     order: -1;
-    width: min(100%, 13rem);
-    padding-bottom: 0;
   }
 
-  .retrato::after {
+  .secao-topo {
+    margin-bottom: var(--e-4);
+  }
+
+  .menu-botao {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0 0.875rem;
+    border: 1px solid var(--fio);
+    border-radius: var(--raio);
+    background: var(--superficie);
+    font-size: var(--t-0);
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  /* Três tracinhos que viram um X quando o menu abre */
+  .menu-botao-icone {
+    position: relative;
+    width: 1rem;
+    height: 2px;
+    background: currentColor;
+    transition: background-color 0.15s ease;
+  }
+
+  .menu-botao-icone::before,
+  .menu-botao-icone::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .menu-botao-icone::before {
+    transform: translateY(-5px);
+  }
+
+  .menu-botao-icone::after {
+    transform: translateY(5px);
+  }
+
+  .menu-botao[aria-expanded="true"] .menu-botao-icone {
+    background: transparent;
+  }
+
+  .menu-botao[aria-expanded="true"] .menu-botao-icone::before {
+    transform: rotate(45deg);
+  }
+
+  .menu-botao[aria-expanded="true"] .menu-botao-icone::after {
+    transform: rotate(-45deg);
+  }
+
+  /* O painel do menu desce logo abaixo do cabeçalho.
+     ".menu .menu-lista" vence o reset de ul[role="list"], que zera o padding. */
+  .menu .menu-lista {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    padding: var(--e-1) var(--margem) var(--e-2);
+    border-bottom: 1px solid var(--fio);
+    background: var(--papel);
+  }
+
+  .menu-lista.aberta {
+    display: flex;
+  }
+
+  .menu-lista a {
+    display: block;
+    padding-block: 0.875rem;
+    border-bottom: 1px solid var(--fio);
+    font-size: var(--t-1);
+  }
+
+  .menu-lista li:last-child a {
+    border-bottom: 0;
+  }
+
+  /* Sem JavaScript, o menu fica sempre visível (em linha, rolando de lado) */
+  html:not(.js) .menu-botao {
+    display: none;
+  }
+
+  html:not(.js) .menu-lista {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    gap: var(--e-2);
+    padding: 0;
+    border: 0;
+    background: none;
+    overflow-x: auto;
+  }
+
+  .menu > .botao {
     display: none;
   }
 }
@@ -353,24 +460,4 @@ html {
   :root {
     --e-5: 3rem;
   }
-
-  .topo .container {
-    min-height: 3.75rem;
-  }
-
-  .menu .botao {
-    display: none;
-  }
-
-  .menu ul {
-    gap: var(--e-2);
-  }
-}
-
-/* ---------- Página 404 ---------- */
-
-.nao-encontrada p {
-  max-width: 34rem;
-  margin-top: var(--e-3);
-  color: var(--tinta-suave);
 }

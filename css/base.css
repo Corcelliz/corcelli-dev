@@ -6,7 +6,7 @@
 :root {
   /* Cores (tema claro) */
   --papel: #f3f4f1;        /* fundo, o branco frio da parede */
-  --superficie: #ffffff;   /* fundos elevados, como a moldura dos prints */
+  --superficie: #ffffff;   /* cartões e fundos elevados */
   --tinta: #1c2127;        /* texto principal, grafite */
   --tinta-suave: #59616b;  /* texto de apoio */
   --apagado: #656d76;      /* texto ainda não alcançado na trajetória (contraste 4,5:1) */
@@ -14,18 +14,22 @@
   --sinal: #c61f2b;        /* vermelho da linha: traços, links e foco */
   --sinal-fundo: #c61f2b;  /* fundo do botão principal */
   --sinal-texto: #ffffff;  /* texto sobre o vermelho */
+  --sinal-veu: rgb(198 31 43 / 0.08); /* vermelho bem leve, para fundos de destaque */
+  --ponto-grade: rgb(28 33 39 / 0.09); /* pontinhos do fundo da abertura */
 
   /* Tipografia */
   --fonte-titulo: "Archivo", "Arial Narrow", system-ui, sans-serif;
   --fonte-texto: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fonte-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
 
   /* Escala de tipos (razão 1,25, a partir de 17px) */
+  --t-mini: 0.8125rem;
   --t-0: 0.875rem;
   --t-1: 1.0625rem;
   --t-2: 1.3125rem;
   --t-3: 1.625rem;
-  --t-4: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
-  --t-nome: clamp(3.25rem, 1.8rem + 7vw, 7.25rem);
+  --t-4: clamp(2rem, 1.5rem + 2.2vw, 3.25rem);
+  --t-nome: clamp(3.5rem, 2rem + 7vw, 7.5rem);
 
   /* Espaços */
   --e-1: 0.5rem;
@@ -33,11 +37,13 @@
   --e-3: 1.5rem;
   --e-4: 2.5rem;
   --e-5: 4rem;
-  --e-6: clamp(4.5rem, 3rem + 6vw, 8rem);
+  --e-6: clamp(5rem, 3.5rem + 6vw, 8.5rem);
 
-  --largura: 70rem;        /* largura máxima do conteúdo */
+  --largura: 72rem;        /* largura máxima do conteúdo */
   --margem: clamp(1rem, 0.5rem + 3vw, 2.5rem);
-  --raio: 6px;
+  --raio: 6px;             /* botões e prints */
+  --raio-cartao: 12px;     /* cartões */
+  --cabecalho: 4.5rem;     /* altura do cabeçalho fixo */
 
   color-scheme: light dark;
 }
@@ -46,14 +52,16 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --papel: #14181d;
-    --superficie: #1c2128;
+    --superficie: #1b2027;
     --tinta: #eceeea;
     --tinta-suave: #a3aab3;
     --apagado: #868d96;
-    --fio: #2e343c;
+    --fio: #2c323a;
     --sinal: #ff6b70;      /* mais claro para manter o contraste no fundo escuro */
     --sinal-fundo: #c61f2b;
     --sinal-texto: #ffffff;
+    --sinal-veu: rgb(255 107 112 / 0.1);
+    --ponto-grade: rgb(236 238 234 / 0.07);
   }
 }
 
@@ -71,6 +79,8 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  /* Os links de âncora não ficam escondidos atrás do cabeçalho fixo */
+  scroll-padding-top: calc(var(--cabecalho) + 1rem);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -95,6 +105,14 @@ img {
   height: auto;
 }
 
+picture {
+  display: block;
+}
+
+svg {
+  flex-shrink: 0;
+}
+
 h1,
 h2,
 h3 {
@@ -113,13 +131,21 @@ a {
 
 /* Toque no celular: sem atraso de clique duplo e com um retorno discreto */
 a,
-button {
+button,
+summary {
   touch-action: manipulation;
   -webkit-tap-highlight-color: rgb(198 31 43 / 0.15);
 }
 
-picture {
-  display: block;
+button {
+  font: inherit;
+  color: inherit;
+}
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+  padding: 0;
 }
 
 /* Trechos de código no texto, como npm start */
@@ -127,16 +153,10 @@ code {
   padding: 0.1em 0.35em;
   border: 1px solid var(--fio);
   border-radius: 4px;
-  background: var(--superficie);
-  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
-  font-size: 0.9em;
+  background: var(--papel);
+  font-family: var(--fonte-mono);
+  font-size: 0.85em;
   white-space: nowrap;
-}
-
-ul[role="list"],
-ol[role="list"] {
-  list-style: none;
-  padding: 0;
 }
 
 /* Foco visível para quem navega pelo teclado */
@@ -164,7 +184,7 @@ ol[role="list"] {
   position: absolute;
   left: var(--margem);
   top: -3rem;
-  z-index: 10;
+  z-index: 20;
   padding: var(--e-1) var(--e-2);
   background: var(--tinta);
   color: var(--papel);
