@@ -9,6 +9,7 @@
   --superficie: #ffffff;   /* fundos elevados, como a moldura dos prints */
   --tinta: #1c2127;        /* texto principal, grafite */
   --tinta-suave: #59616b;  /* texto de apoio */
+  --apagado: #656d76;      /* texto ainda não alcançado na trajetória (contraste 4,5:1) */
   --fio: #d8dbd6;          /* bordas e divisórias */
   --sinal: #c61f2b;        /* vermelho da linha: traços, links e foco */
   --sinal-fundo: #c61f2b;  /* fundo do botão principal */
@@ -48,6 +49,7 @@
     --superficie: #1c2128;
     --tinta: #eceeea;
     --tinta-suave: #a3aab3;
+    --apagado: #868d96;
     --fio: #2e343c;
     --sinal: #ff6b70;      /* mais claro para manter o contraste no fundo escuro */
     --sinal-fundo: #c61f2b;
@@ -107,6 +109,28 @@ p {
 
 a {
   color: inherit;
+}
+
+/* Toque no celular: sem atraso de clique duplo e com um retorno discreto */
+a,
+button {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgb(198 31 43 / 0.15);
+}
+
+picture {
+  display: block;
+}
+
+/* Trechos de código no texto, como npm start */
+code {
+  padding: 0.1em 0.35em;
+  border: 1px solid var(--fio);
+  border-radius: 4px;
+  background: var(--superficie);
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.9em;
+  white-space: nowrap;
 }
 
 ul[role="list"],

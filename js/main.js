@@ -111,3 +111,45 @@ if (botaoCopiar && aviso) {
     }
   });
 }
+
+// 3) Menu: marca a seção que está na tela, para quem rola saber onde está.
+//    Usa aria-current, que leitores de tela também anunciam.
+const linksMenu = [...document.querySelectorAll('.menu a[href^="#"]:not(.botao)')];
+const secoesMenu = linksMenu
+  .map((link) => document.querySelector(link.getAttribute("href")))
+  .filter(Boolean);
+
+if ("IntersectionObserver" in window && secoesMenu.length) {
+  const marcar = (id) => {
+    linksMenu.forEach((link) => {
+      if (link.getAttribute("href") === `#${id}`) {
+        link.setAttribute("aria-current", "true");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  };
+
+  // A seção "atual" é a que cruza uma faixa fina perto do topo da tela
+  const vigia = new IntersectionObserver(
+    (entradas) => {
+      entradas.forEach((entrada) => {
+        if (entrada.isIntersecting) marcar(entrada.target.id);
+      });
+    },
+    { rootMargin: "-30% 0px -65% 0px" }
+  );
+
+  secoesMenu.forEach((secao) => vigia.observe(secao));
+
+  // Na abertura, nenhum item fica marcado
+  const abertura = document.querySelector(".abertura");
+  if (abertura) {
+    new IntersectionObserver(
+      ([entrada]) => {
+        if (entrada.isIntersecting) marcar(null);
+      },
+      { rootMargin: "-30% 0px -65% 0px" }
+    ).observe(abertura);
+  }
+}

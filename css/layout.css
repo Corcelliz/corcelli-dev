@@ -75,6 +75,15 @@ html {
   color: var(--tinta);
 }
 
+/* Seção em que a pessoa está agora (marcada pelo js/main.js) */
+.menu a[aria-current="true"] {
+  color: var(--tinta);
+  text-decoration: underline;
+  text-decoration-color: var(--sinal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
 /* ---------- Abertura ---------- */
 
 .abertura .container {
@@ -114,6 +123,26 @@ html {
   flex-wrap: wrap;
   gap: var(--e-2);
   margin-top: var(--e-4);
+}
+
+/* Atalho para os projetos logo na abertura */
+.vitrine {
+  max-width: 34rem;
+  margin-top: var(--e-3);
+  color: var(--tinta-suave);
+  font-size: var(--t-0);
+}
+
+.vitrine a {
+  color: var(--tinta);
+  font-weight: 500;
+  text-decoration-color: var(--sinal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.vitrine a:hover {
+  color: var(--sinal);
 }
 
 /* A foto fica no trilho; abaixo dela começa a linha vermelha,
@@ -203,9 +232,21 @@ html {
   border-top: 1px solid var(--fio);
 }
 
-.contato .container > p:not(.aviso) {
+.contato .container > p:not(.aviso, .contato-extra) {
   max-width: 38rem;
   margin-top: var(--e-3);
+}
+
+.contato-extra {
+  margin-top: var(--e-1);
+  color: var(--tinta-suave);
+  font-size: var(--t-0);
+}
+
+.contato-extra a {
+  color: var(--tinta);
+  text-decoration-color: var(--sinal);
+  text-underline-offset: 3px;
 }
 
 /* ---------- Rodapé ---------- */
@@ -261,7 +302,7 @@ html {
 /* Em telas altas o texto também fica fixo, e a cena toda "descansa" na tela */
 @media (min-width: 52rem) and (min-height: 54rem) {
   .sobre .container {
-    min-height: 175vh;
+    min-height: 160vh;
   }
 
   .sobre-texto {
@@ -324,4 +365,12 @@ html {
   .menu ul {
     gap: var(--e-2);
   }
+}
+
+/* ---------- Página 404 ---------- */
+
+.nao-encontrada p {
+  max-width: 34rem;
+  margin-top: var(--e-3);
+  color: var(--tinta-suave);
 }

@@ -88,6 +88,14 @@
   font-weight: 500;
 }
 
+/* Onde cada ferramenta foi usada: dá contexto no lugar de uma lista solta */
+.ferramentas .uso {
+  display: block;
+  margin-top: 0.125rem;
+  color: var(--tinta-suave);
+  font-size: var(--t-0);
+}
+
 @media (max-width: 34rem) {
   .ferramentas > div {
     grid-template-columns: 1fr;
@@ -212,15 +220,19 @@
   background: var(--sinal);
 }
 
-/* Estações ainda não alcançadas ficam mais apagadas */
+/* Estações ainda não alcançadas ficam mais apagadas, mas continuam legíveis
+   (as duas cores passam do contraste mínimo de 4,5:1) */
 .anima .estacao strong,
 .anima .estacao p {
-  transition: opacity 0.3s ease-out;
+  transition: color 0.3s ease-out;
 }
 
-.anima .estacao:not(.ativa) strong,
+.anima .estacao:not(.ativa) strong {
+  color: var(--tinta-suave);
+}
+
 .anima .estacao:not(.ativa) p {
-  opacity: 0.55;
+  color: var(--apagado);
 }
 
 /* A ponta que sai da foto some assim que a trajetória se solta da página */
@@ -283,27 +295,37 @@
   color: var(--tinta-suave);
 }
 
-.destaques {
+/* Estudo de caso de cada projeto: desafio, decisões, resultado e próximo passo.
+   Mesma linguagem da lista de ferramentas: rótulo em cinza e fio fino. */
+.caso {
   margin-top: var(--e-3);
-  display: grid;
-  gap: var(--e-1);
+  border-top: 1px solid var(--fio);
   font-size: var(--t-0);
 }
 
-/* Marcador: um traço curto da mesma cor da linha da trajetória */
-.destaques li {
-  position: relative;
-  padding-left: 1.25rem;
+.caso > div {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: var(--e-2);
+  padding-block: 0.75rem;
+  border-bottom: 1px solid var(--fio);
 }
 
-.destaques li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.7em;
-  width: 0.625rem;
-  height: 2px;
-  background: var(--sinal);
+.caso dt {
+  color: var(--tinta-suave);
+  font-weight: 500;
+}
+
+.caso dd {
+  line-height: 1.55;
+}
+
+/* Na coluna estreita (notebook pequeno) e no celular, o rótulo vai para cima */
+@media (max-width: 70rem) and (min-width: 52rem), (max-width: 34rem) {
+  .caso > div {
+    grid-template-columns: 1fr;
+    gap: 0.125rem;
+  }
 }
 
 .projeto-texto > .stack {

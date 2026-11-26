@@ -8,19 +8,61 @@
       name="description"
       content="Portfólio de Guilherme Corcelli: sistemas web e automações com IA, de São Paulo, aberto a trabalho remoto."
     />
+    <link rel="canonical" href="https://corcelliportfolio.vercel.app/" />
     <meta name="theme-color" content="#f3f4f1" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#14181d" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
 
-    <!-- Prévia ao compartilhar o link -->
+    <!-- Prévia ao compartilhar o link (WhatsApp, LinkedIn etc.).
+         A imagem precisa de endereço completo para os aplicativos encontrarem. -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Guilherme Corcelli" />
+    <meta property="og:url" content="https://corcelliportfolio.vercel.app/" />
     <meta property="og:title" content="Guilherme Corcelli | Desenvolvimento web e automação com IA" />
     <meta
       property="og:description"
       content="Sistemas web e automações com IA, do banco de dados à tela. Projetos: CRM System, tokenEye e Supatasks."
     />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="https://corcelliportfolio.vercel.app/assets/images/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Guilherme Corcelli, desenvolvimento web e automação com IA, com a foto e a linha vermelha da trajetória"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Dados estruturados: ajudam o Google a entender quem é a pessoa do site -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Guilherme Corcelli",
+        "url": "https://corcelliportfolio.vercel.app/",
+        "image": "https://corcelliportfolio.vercel.app/assets/images/guilherme-corcelli.jpg",
+        "description": "Desenvolvo sistemas web e automações com IA, do banco de dados à tela.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "São Paulo",
+          "addressRegion": "SP",
+          "addressCountry": "BR"
+        },
+        "knowsAbout": [
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "Node.js",
+          "Express",
+          "SQLite",
+          "Supabase",
+          "Electron",
+          "Automação com IA"
+        ],
+        "sameAs": ["https://github.com/Corcelliz"]
+      }
+    </script>
 
     <!-- Fontes: Archivo nos títulos, Roboto nos textos -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -40,7 +82,7 @@
 
     <header class="topo">
       <div class="container">
-        <a class="marca" href="#conteudo" aria-label="Guilherme Corcelli, início">GC</a>
+        <a class="marca" href="#conteudo" aria-label="Guilherme Corcelli, início" translate="no">GC</a>
         <nav class="menu" aria-label="Principal">
           <ul role="list">
             <li><a href="#sobre">Sobre</a></li>
@@ -65,15 +107,26 @@
               <a class="botao" href="#contato">Fale comigo</a>
               <a class="botao botao--contorno" href="#projetos">Ver projetos</a>
             </div>
+            <!-- Atalho para o trabalho: quem avalia vê os projetos logo na abertura -->
+            <p class="vitrine">
+              Publicados, com código aberto:
+              <a href="#crm-system" translate="no">CRM System</a>,
+              <a href="#tokeneye" translate="no">tokenEye</a> e
+              <a href="#supatasks" translate="no">Supatasks</a>.
+            </p>
           </div>
 
           <figure class="retrato">
-            <img
-              src="assets/images/guilherme-corcelli.jpg"
-              alt="Foto de Guilherme Corcelli"
-              width="720"
-              height="720"
-            />
+            <picture>
+              <source srcset="assets/images/guilherme-corcelli.webp" type="image/webp" />
+              <img
+                src="assets/images/guilherme-corcelli.jpg"
+                alt="Foto de Guilherme Corcelli"
+                width="720"
+                height="720"
+                fetchpriority="high"
+              />
+            </picture>
           </figure>
         </div>
       </section>
@@ -83,38 +136,52 @@
           <div class="sobre-texto">
             <h2 class="secao-titulo" id="sobre-titulo">Sobre mim</h2>
             <p>
-              Sou formado em Tecnologia da Informação e moro em São Paulo. Hoje trabalho
-              com atendimento comercial a empresas no setor de telecom: sou o ponto de
-              contato de uma equipe de consultores, tiro dúvidas sobre planos e regras e
-              cuido do pós-venda.
+              Sou formado em Tecnologia da Informação e trabalho com atendimento comercial
+              a empresas no setor de telecom: sou o ponto de contato de uma equipe de
+              consultores, tiro dúvidas sobre planos e regras e cuido do pós-venda. Esse
+              dia a dia me ensinou a entender processos e a transformar um problema de
+              negócio em passos claros.
             </p>
             <p>
-              Esse dia a dia me ensinou a entender processos e a transformar um problema de
-              negócio em passos claros. É assim que construo software: começo pelo
-              problema, avanço em etapas pequenas e testo cada uma antes de dar por pronta.
+              É assim que construo software: começo pelo problema, avanço em etapas
+              pequenas e testo cada uma antes de dar por pronta. Uso o
+              <span translate="no">Claude Code</span> para planejar, escrever, revisar e
+              testar, e faço questão de entender cada decisão do código.
             </p>
             <p>
-              Trabalho com IA no fluxo de desenvolvimento. Uso o Claude Code para planejar,
-              escrever, revisar e testar, e faço questão de entender cada decisão do código.
+              Procuro uma vaga remota em desenvolvimento web ou automação com IA, e também
+              aceito projetos pontuais.
             </p>
 
-            <h3 class="sub-titulo">O que uso no dia a dia</h3>
+            <h3 class="sub-titulo">O que uso e onde</h3>
             <dl class="ferramentas">
               <div>
                 <dt>Front-end</dt>
-                <dd>HTML, CSS, JavaScript, layout responsivo e acessibilidade</dd>
+                <dd>
+                  HTML, CSS, JavaScript, layout responsivo e acessibilidade
+                  <span class="uso">Em todos os projetos e neste site</span>
+                </dd>
               </div>
               <div>
                 <dt>Back-end e dados</dt>
-                <dd>Node.js, Express, SQLite e Supabase (Postgres, Auth e RLS)</dd>
+                <dd>
+                  Node.js, Express, SQLite e Supabase (Postgres, Auth e RLS)
+                  <span class="uso">No CRM System e no Supatasks</span>
+                </dd>
               </div>
               <div>
                 <dt>Desktop</dt>
-                <dd>Electron</dd>
+                <dd>
+                  Electron
+                  <span class="uso">No tokenEye</span>
+                </dd>
               </div>
               <div>
                 <dt>Ferramentas</dt>
-                <dd>Git, GitHub, Vercel e Claude Code</dd>
+                <dd>
+                  Git, GitHub, Vercel e <span translate="no">Claude Code</span>
+                  <span class="uso">Em todos os projetos; a Vercel publica este site</span>
+                </dd>
               </div>
             </dl>
           </div>
@@ -135,7 +202,10 @@
               </li>
               <li class="estacao" style="--i: 2">
                 <strong>IA e automação</strong>
-                <p>Em 2026, estudo IA generativa e passo a construir com o Claude Code.</p>
+                <p>
+                  Em 2026, estudo IA generativa e passo a construir com o
+                  <span translate="no">Claude Code</span>.
+                </p>
               </li>
               <li class="estacao" style="--i: 3">
                 <strong>Três sistemas publicados</strong>
@@ -155,23 +225,28 @@
           <header class="secao-topo">
             <h2 class="secao-titulo" id="projetos-titulo">Projetos</h2>
             <p>
-              Três sistemas que construí em 2026. O código de todos está aberto no GitHub,
-              com instruções para rodar. As telas usam dados fictícios.
+              Três sistemas que construí em 2026, cada um com o desafio, as decisões e o
+              resultado. O código de todos está aberto no GitHub, com instruções para
+              rodar. As telas usam dados fictícios.
             </p>
           </header>
 
-          <article class="projeto" aria-labelledby="projeto-crm">
+          <article class="projeto" id="crm-system" aria-labelledby="projeto-crm">
             <figure class="projeto-tela">
-              <img
-                src="assets/images/projects/crm-system.png"
-                alt="Funil de vendas do CRM System, com oportunidades organizadas em colunas por estágio"
-                width="1440"
-                height="860"
-                loading="lazy"
-              />
+              <picture>
+                <source srcset="assets/images/projects/crm-system.webp" type="image/webp" />
+                <img
+                  src="assets/images/projects/crm-system.png"
+                  alt="Funil de vendas do CRM System, com oportunidades organizadas em colunas por estágio"
+                  width="1440"
+                  height="860"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </figure>
             <div class="projeto-texto">
-              <h3 id="projeto-crm">CRM System</h3>
+              <h3 id="projeto-crm" translate="no">CRM System</h3>
               <p class="projeto-resumo">
                 Sistema de gestão comercial com área do colaborador e área do administrador.
               </p>
@@ -179,14 +254,34 @@
                 Funil de vendas com arrastar e soltar, carteira de clientes, tarefas, meta do
                 mês e um painel para o administrador acompanhar a equipe e a auditoria.
               </p>
-              <ul class="destaques" role="list">
-                <li>
-                  Login validado no servidor, com sessão em cookie httpOnly, proteção CSRF e
-                  bloqueio por tentativas
-                </li>
-                <li>Banco SQLite nativo do Node.js e front-end sem framework nem build</li>
-                <li>Base de demonstração gerada com dados 100% fictícios</li>
-              </ul>
+              <dl class="caso">
+                <div>
+                  <dt>Desafio</dt>
+                  <dd>
+                    Dois perfis de acesso, colaborador e administrador, com a segurança feita
+                    no servidor e sem framework.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Decisões</dt>
+                  <dd>
+                    Login validado no servidor, sessão em cookie httpOnly, proteção CSRF e
+                    bloqueio por tentativas. Banco SQLite nativo do Node.js e front-end sem
+                    etapa de build.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Resultado</dt>
+                  <dd>
+                    Versão 1 publicada com licença MIT. Roda com <code>npm install</code> e
+                    <code>npm start</code> e já cria uma base de demonstração 100% fictícia.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Próximo passo</dt>
+                  <dd>Testes automatizados.</dd>
+                </div>
+              </dl>
               <p class="stack">Node.js, Express, SQLite e JavaScript</p>
               <a class="link-projeto" href="https://github.com/Corcelliz/crm-system">
                 Ver o código do CRM System no GitHub
@@ -194,34 +289,57 @@
             </div>
           </article>
 
-          <article class="projeto" aria-labelledby="projeto-tokeneye">
+          <article class="projeto" id="tokeneye" aria-labelledby="projeto-tokeneye">
             <figure class="projeto-tela">
-              <img
-                src="assets/images/projects/tokeneye.png"
-                alt="Painel do tokenEye com limites do plano, uso da semana, tokens de hoje, da semana e do mês, divisão por modelo e por projeto"
-                width="1100"
-                height="1151"
-                loading="lazy"
-              />
+              <picture>
+                <source srcset="assets/images/projects/tokeneye.webp" type="image/webp" />
+                <img
+                  src="assets/images/projects/tokeneye.png"
+                  alt="Painel do tokenEye com limites do plano, uso da semana, tokens de hoje, da semana e do mês, divisão por modelo e por projeto"
+                  width="1100"
+                  height="1151"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </figure>
             <div class="projeto-texto">
-              <h3 id="projeto-tokeneye">tokenEye</h3>
+              <h3 id="projeto-tokeneye" translate="no">tokenEye</h3>
               <p class="projeto-resumo">
                 App desktop que mostra, ao vivo, quanto do plano do Claude eu uso.
               </p>
               <p>
-                Lê os registros locais do Claude Code e mostra os tokens de hoje, dos
-                últimos 7 dias e do mês, um gráfico diário, a divisão por modelo e por
-                projeto e os limites da sessão e da semana.
+                Lê os registros locais do <span translate="no">Claude Code</span> e mostra os
+                tokens de hoje, dos últimos 7 dias e do mês, um gráfico diário, a divisão por
+                modelo e por projeto e os limites da sessão e da semana.
               </p>
-              <ul class="destaques" role="list">
-                <li>
-                  Funciona 100% offline, sem telemetria, e lê só metadados, nunca o conteúdo
-                  das conversas
-                </li>
-                <li>Remove mensagens repetidas dos registros, que mais que dobravam o total</li>
-                <li>67 testes automatizados e janela Electron com isolamento e CSP</li>
-              </ul>
+              <dl class="caso">
+                <div>
+                  <dt>Desafio</dt>
+                  <dd>
+                    Acompanhar o uso do plano ao vivo sem mandar nenhum dado para fora do
+                    computador.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Decisões</dt>
+                  <dd>
+                    Ler só os metadados dos registros, nunca o conteúdo das conversas. Funciona
+                    100% offline, sem telemetria, numa janela Electron com isolamento e CSP.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Resultado</dt>
+                  <dd>
+                    Os registros repetiam mensagens e mais que dobravam o total; a contagem
+                    passou a remover as repetidas. O projeto tem 67 testes automatizados.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Próximo passo</dt>
+                  <dd>Instalador e ícone próprio, numa versão 3.</dd>
+                </div>
+              </dl>
               <p class="stack">Electron, Node.js e JavaScript</p>
               <a class="link-projeto" href="https://github.com/Corcelliz/tokenEye">
                 Ver o código do tokenEye no GitHub
@@ -229,18 +347,22 @@
             </div>
           </article>
 
-          <article class="projeto" aria-labelledby="projeto-supatasks">
+          <article class="projeto" id="supatasks" aria-labelledby="projeto-supatasks">
             <figure class="projeto-tela">
-              <img
-                src="assets/images/projects/supatasks.png"
-                alt="Lista de tarefas do Supatasks com cinco tarefas, três delas concluídas"
-                width="1280"
-                height="800"
-                loading="lazy"
-              />
+              <picture>
+                <source srcset="assets/images/projects/supatasks.webp" type="image/webp" />
+                <img
+                  src="assets/images/projects/supatasks.png"
+                  alt="Lista de tarefas do Supatasks com cinco tarefas, três delas concluídas"
+                  width="1280"
+                  height="800"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </figure>
             <div class="projeto-texto">
-              <h3 id="projeto-supatasks">Supatasks</h3>
+              <h3 id="projeto-supatasks" translate="no">Supatasks</h3>
               <p class="projeto-resumo">
                 Lista de tarefas na nuvem com acesso restrito a um administrador.
               </p>
@@ -248,14 +370,30 @@
                 Criar, concluir e apagar tarefas, com login por e-mail e senha e os dados
                 guardados em um banco Postgres no Supabase.
               </p>
-              <ul class="destaques" role="list">
-                <li>
-                  Segurança no próprio banco com Row Level Security: sem permissão, o banco
-                  recusa a leitura e a escrita
-                </li>
-                <li>Chave de acesso fora do código versionado</li>
-                <li>Layout pensado para o celular, com botões de 44 px de altura</li>
-              </ul>
+              <dl class="caso">
+                <div>
+                  <dt>Desafio</dt>
+                  <dd>
+                    Aprender back-end como serviço: banco, login e permissões sem escrever um
+                    servidor.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Decisões</dt>
+                  <dd>
+                    Segurança no próprio banco com Row Level Security: sem permissão, o banco
+                    recusa a leitura e a escrita. Chave de acesso fora do código versionado.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Resultado</dt>
+                  <dd>
+                    Versão 2 publicada, com layout pensado para o celular. No caminho, aprendi
+                    a diagnosticar o acesso pelo status HTTP: 401 é falta de identificação e
+                    403 é a regra do banco barrando.
+                  </dd>
+                </div>
+              </dl>
               <p class="stack">JavaScript e Supabase (Postgres e Auth)</p>
               <a class="link-projeto" href="https://github.com/Corcelliz/supatasks">
                 Ver o código do Supatasks no GitHub
@@ -269,8 +407,8 @@
         <div class="container">
           <h2 class="secao-titulo" id="contato-titulo">Contato</h2>
           <p>
-            Estou aberto a vagas remotas em desenvolvimento web e automação com IA, e
-            também a projetos pontuais. O jeito mais rápido de falar comigo é por e-mail.
+            Quer conversar sobre uma vaga remota ou um projeto? O jeito mais rápido de falar
+            comigo é por e-mail.
           </p>
           <a class="email" href="mailto:corcellidev@gmail.com">corcellidev@gmail.com</a>
           <div class="acoes">
@@ -288,13 +426,20 @@
             </button>
           </div>
           <p class="aviso" role="status" aria-live="polite"></p>
+          <p class="contato-extra">
+            O código de todos os projetos está no meu
+            <a href="https://github.com/Corcelliz">GitHub</a>.
+          </p>
         </div>
       </section>
     </main>
 
     <footer class="rodape">
       <div class="container">
-        <p>© 2026 Guilherme Corcelli</p>
+        <p>
+          © 2026 Guilherme Corcelli. Feito à mão em HTML, CSS e JavaScript, sem framework.
+          Atualizado em novembro de 2026.
+        </p>
         <ul role="list">
           <li><a href="https://github.com/Corcelliz">GitHub</a></li>
           <li><a href="https://github.com/Corcelliz/corcelli-dev">Código deste site</a></li>
