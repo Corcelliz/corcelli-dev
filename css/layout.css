@@ -18,8 +18,20 @@
 
 /* ---------- Cabeçalho ---------- */
 
+/* O cabeçalho acompanha a rolagem: o menu fica sempre à mão */
 .topo {
+  position: sticky;
+  top: 0;
+  z-index: 5;
   border-bottom: 1px solid var(--fio);
+  background: color-mix(in srgb, var(--papel) 90%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+/* Os links de âncora não ficam escondidos atrás do cabeçalho */
+html {
+  scroll-padding-top: 5rem;
 }
 
 .topo .container {
@@ -51,6 +63,8 @@
 }
 
 .menu a:not(.botao) {
+  display: inline-block;
+  padding-block: 0.75rem;   /* alvo de toque com pelo menos 44 px */
   color: var(--tinta-suave);
   text-decoration: none;
   font-size: var(--t-0);
@@ -226,7 +240,49 @@
   text-decoration-color: var(--sinal);
 }
 
+/* ---------- Trajetória fixa na tela ----------
+   No computador, a trajetória fica "presa" (sticky) enquanto a seção
+   rola. A seção ganha altura extra para dar espaço à animação, que
+   avança conforme a rolagem (ver js/main.js). Em telas baixas ou
+   estreitas ela volta a rolar junto com a página. */
+
+@media (min-width: 52rem) and (min-height: 40rem) {
+  .sobre .container {
+    align-items: start;
+    min-height: 125vh;
+  }
+
+  .trajetoria {
+    position: sticky;
+    top: 6rem;
+  }
+}
+
+/* Em telas altas o texto também fica fixo, e a cena toda "descansa" na tela */
+@media (min-width: 52rem) and (min-height: 54rem) {
+  .sobre .container {
+    min-height: 175vh;
+  }
+
+  .sobre-texto {
+    position: sticky;
+    top: 6rem;
+  }
+}
+
 /* ---------- Telas menores ---------- */
+
+/* Tablet e notebook pequeno: trilho mais estreito e colunas mais próximas */
+@media (max-width: 70rem) {
+  :root {
+    --trilho: minmax(14rem, 17rem);
+  }
+
+  .abertura .container,
+  .sobre .container {
+    column-gap: var(--e-4);
+  }
+}
 
 @media (max-width: 52rem) {
   .sobre .container {
@@ -253,6 +309,14 @@
 }
 
 @media (max-width: 34rem) {
+  :root {
+    --e-5: 3rem;
+  }
+
+  .topo .container {
+    min-height: 3.75rem;
+  }
+
   .menu .botao {
     display: none;
   }

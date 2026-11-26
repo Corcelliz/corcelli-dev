@@ -187,24 +187,45 @@
   border-style: dashed;
 }
 
-/* Animação única da página: a linha é desenhada quando aparece.
-   Só acontece com JavaScript ativo e sem "reduzir movimento". */
+/* Animação guiada pela rolagem: o JavaScript calcula, para cada estação,
+   quanto da linha já foi percorrido (--f, de 0 a 1) e marca a estação
+   alcançada (.ativa) e a atual (.atual). Sem JavaScript ou com "reduzir
+   movimento", a classe .anima não existe e a linha aparece pronta. */
 .anima .estacao::before {
-  transform: scaleY(0);
-  transition: transform 0.45s ease-out calc(var(--i) * 0.3s);
+  transform: scaleY(var(--f, 0));
 }
 
 .anima .estacao::after {
   opacity: 0;
-  transition: opacity 0.25s ease-out calc(var(--i) * 0.3s);
+  transform: scale(0.6);
+  transition: opacity 0.2s ease-out, transform 0.3s cubic-bezier(0.2, 0, 0, 1),
+    background-color 0.2s ease-out;
 }
 
-.anima .linha.visivel .estacao::before {
-  transform: scaleY(1);
-}
-
-.anima .linha.visivel .estacao::after {
+.anima .estacao.ativa::after {
   opacity: 1;
+  transform: scale(1);
+}
+
+/* A estação atual fica preenchida: mostra onde você está na trajetória */
+.anima .estacao.atual::after {
+  background: var(--sinal);
+}
+
+/* Estações ainda não alcançadas ficam mais apagadas */
+.anima .estacao strong,
+.anima .estacao p {
+  transition: opacity 0.3s ease-out;
+}
+
+.anima .estacao:not(.ativa) strong,
+.anima .estacao:not(.ativa) p {
+  opacity: 0.55;
+}
+
+/* A ponta que sai da foto some assim que a trajetória se solta da página */
+.anima .linha::before {
+  opacity: max(0, calc(1 - var(--p, 0) * 25));
 }
 
 /* =========================================================
