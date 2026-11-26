@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=Roboto:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=JetBrains+Mono:wght@400;500&family=Roboto:wght@400;500;700&display=swap"
     />
     <!-- Caminhos absolutos (/css/...): esta página pode abrir em qualquer endereço do site -->
     <link rel="stylesheet" href="/css/base.css" />
@@ -23,12 +23,17 @@
   <body>
     <header class="topo">
       <div class="container">
-        <a class="marca" href="/" aria-label="Guilherme Corcelli, início" translate="no">GC</a>
+        <a class="marca" href="/" aria-label="Guilherme Corcelli, início" translate="no">
+          <span class="marca-selo" aria-hidden="true">GC</span>
+          <span class="marca-nome" aria-hidden="true">corcelli-dev</span>
+          <span class="marca-caminho" aria-hidden="true">~/404</span>
+        </a>
       </div>
     </header>
 
     <main class="secao nao-encontrada">
       <div class="container">
+        <p class="secao-rotulo" aria-hidden="true">[<span>404</span>] não encontrado</p>
         <h1 class="secao-titulo">Página não encontrada</h1>
         <p>
           Este endereço não existe ou mudou de lugar. O portfólio inteiro fica numa página
