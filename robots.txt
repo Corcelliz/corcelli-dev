@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://corcelliportfolio.vercel.app/sitemap.xml
