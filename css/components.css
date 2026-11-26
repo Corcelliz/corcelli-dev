@@ -302,6 +302,35 @@
   color: var(--cor);
 }
 
+/* Scale no hover: o cartão cresce um pouco e o ícone cresce mais, com uma
+   saída suave. Só em quem tem mouse e não pediu para reduzir movimento. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .tecnologia {
+    transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), border-color 0.15s ease,
+      background-color 0.15s ease, box-shadow 0.25s ease;
+  }
+
+  .tecnologia svg {
+    transition: transform 0.3s cubic-bezier(0.34, 1.4, 0.64, 1), color 0.15s ease;
+  }
+
+  .tecnologia:hover {
+    transform: scale(1.06);
+    box-shadow: 0 10px 24px -12px color-mix(in srgb, var(--cor) 55%, transparent);
+    position: relative;
+    z-index: 1;
+  }
+
+  .tecnologia:hover svg {
+    transform: scale(1.18);
+    transform-origin: left center;
+  }
+
+  .tecnologia:active {
+    transform: scale(0.98);
+  }
+}
+
 .tecnologia strong {
   font-family: var(--fonte-titulo);
   font-size: var(--t-1);
