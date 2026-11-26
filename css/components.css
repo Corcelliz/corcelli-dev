@@ -138,27 +138,9 @@
   line-height: 1.5;
 }
 
-/* Selo de disponibilidade */
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-block: var(--e-3) var(--e-4);
-  padding: 0.375rem 0.875rem;
-  border: 1px solid var(--fio);
-  border-radius: 999px;
-  background: var(--superficie);
-  font-size: var(--t-0);
-  font-weight: 500;
-}
-
-.status::before {
-  content: "";
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: #2f9e5b;
-  box-shadow: 0 0 0 3px rgb(47 158 91 / 0.18);
+/* Os botões da abertura ficam um pouco afastados do texto */
+.abertura .acoes {
+  margin-top: var(--e-4);
 }
 
 /* Foto redonda com um anel vermelho e um anel fino, como as estações da trajetória */
@@ -311,14 +293,6 @@
   font-size: var(--t-1);
   font-weight: 700;
   line-height: 1.2;
-}
-
-/* Onde foi usada: contexto no lugar de uma lista solta */
-.tecnologia span {
-  margin-top: -0.5rem;
-  color: var(--tinta-suave);
-  font-size: var(--t-mini);
-  line-height: 1.4;
 }
 
 /* ---------- Linha da trajetória ----------

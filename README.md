@@ -6,9 +6,9 @@ Portfólio de **Guilherme Corcelli**: desenvolvimento web e automação com IA, 
 
 ## O que tem no site
 
-- **Abertura:** um prompt de terminal (`whoami`), nome, a função sendo digitada, apresentação, status "aberto a trabalho remoto" e foto.
+- **Abertura:** um prompt de terminal (`whoami`), nome, a função sendo digitada, apresentação, botões para os projetos e o GitHub e foto.
 - **[01] Sobre mim:** formação, experiência, como trabalho e o que procuro, com cartões de fatos rápidos.
-- **[02] Tecnologias:** uma grade de ícones, cada tecnologia com o projeto em que foi usada.
+- **[02] Tecnologias:** uma grade de ícones com o que uso no dia a dia.
 - **[03] Trajetória:** uma linha de estações. No computador ela fica fixa na tela e é desenhada conforme a rolagem.
 - **[04] Projetos:** três sistemas em cartões, com o CRM em destaque. Cada um tem print, estudo de caso que abre e fecha (desafio, decisões, resultado e próximo passo) e link para o código.
 - **[05] Contato:** e-mail em destaque (clicar copia) e atalhos para enviar e-mail, GitHub e o código deste site.
