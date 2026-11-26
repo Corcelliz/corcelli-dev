@@ -270,7 +270,7 @@
   flex-direction: column;
   gap: 0.75rem;
   padding: var(--e-3) var(--e-2);
-  transition: border-color 0.15s ease;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
 .tecnologia svg {
@@ -280,12 +280,26 @@
   transition: color 0.15s ease;
 }
 
+/* Ao passar o mouse, o cartão assume a cor da logo da tecnologia.
+   --marca vem de cada cartão no HTML; --marca-escuro é uma versão mais clara
+   para o tema escuro, quando a cor original some no fundo (só o SQLite). */
+.tecnologia {
+  --cor: var(--marca, var(--sinal));
+}
+
+@media (prefers-color-scheme: dark) {
+  .tecnologia {
+    --cor: var(--marca-escuro, var(--marca, var(--sinal)));
+  }
+}
+
 .tecnologia:hover {
-  border-color: var(--sinal);
+  border-color: var(--cor);
+  background: color-mix(in srgb, var(--cor) 7%, var(--superficie));
 }
 
 .tecnologia:hover svg {
-  color: var(--sinal);
+  color: var(--cor);
 }
 
 .tecnologia strong {
