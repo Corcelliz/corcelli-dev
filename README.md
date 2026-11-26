@@ -6,10 +6,12 @@ Portfólio de **Guilherme Corcelli**: desenvolvimento web e automação com IA, 
 
 ## O que tem no site
 
-- **Abertura:** nome, apresentação, foto e um atalho para os três projetos.
-- **Sobre mim:** formação, experiência, o que procuro e as ferramentas, cada uma com o projeto em que foi usada. A trajetória aparece como uma linha que desce da foto: no computador ela fica fixa na tela e é desenhada conforme a rolagem.
-- **Projetos:** três sistemas, cada um como um estudo de caso curto (desafio, decisões, resultado e próximo passo), com print e link para o código.
-- **Contato:** e-mail com os botões "Enviar e-mail" e "Copiar e-mail".
+- **Abertura:** um prompt de terminal (`whoami`), nome, a função sendo digitada, apresentação, status "aberto a trabalho remoto" e foto.
+- **[01] Sobre mim:** formação, experiência, como trabalho e o que procuro, com cartões de fatos rápidos.
+- **[02] Tecnologias:** uma grade de ícones, cada tecnologia com o projeto em que foi usada.
+- **[03] Trajetória:** uma linha de estações. No computador ela fica fixa na tela e é desenhada conforme a rolagem.
+- **[04] Projetos:** três sistemas em cartões, com o CRM em destaque. Cada um tem print, estudo de caso que abre e fecha (desafio, decisões, resultado e próximo passo) e link para o código.
+- **[05] Contato:** e-mail em destaque (clicar copia) e atalhos para enviar e-mail, GitHub e o código deste site.
 - **Página 404** própria, que leva de volta ao início ou aos projetos.
 
 ## Projetos apresentados
@@ -23,9 +25,10 @@ Portfólio de **Guilherme Corcelli**: desenvolvimento web e automação com IA, 
 ## Tecnologias
 
 - HTML, CSS e JavaScript puros, sem framework, sem dependências e sem etapa de build.
-- Fontes **Archivo** (títulos) e **Roboto** (textos), pelo Google Fonts.
+- Fontes **Archivo** (títulos), **Roboto** (textos) e **JetBrains Mono** (detalhes em estilo terminal), pelo Google Fonts.
+- Ícones das tecnologias do [Simple Icons](https://simpleicons.org/) (licença CC0), reunidos em um único SVG.
 - Tema claro e escuro automáticos, conforme o sistema de quem visita.
-- Acessibilidade: navegação pelo teclado com foco visível, link para pular ao conteúdo, menu que indica a seção atual (`aria-current`), textos alternativos, contraste mínimo de 4,5:1 e respeito à opção "reduzir movimento".
+- Acessibilidade: navegação pelo teclado com foco visível, link para pular ao conteúdo, menu do celular que fecha com Esc, menu que indica a seção atual (`aria-current`), textos alternativos, contraste mínimo de 4,5:1 e respeito à opção "reduzir movimento".
 - Desempenho: imagens em WebP (com PNG/JPG de reserva), carregamento preguiçoso dos prints e prioridade para a foto da abertura.
 - Compartilhamento e busca: prévia com imagem (Open Graph), dados estruturados (`schema.org/Person`), `robots.txt` e `sitemap.xml`.
 
@@ -39,12 +42,12 @@ corcelli-dev/
 ├── sitemap.xml
 ├── css/
 │   ├── base.css         # cores, tipografia e reset
-│   ├── layout.css       # cabeçalho, seções e grade
-│   └── components.css   # botões, trajetória, projetos e contato
+│   ├── layout.css       # cabeçalho, menu, seções e grades
+│   └── components.css   # botões, cartões, tecnologias, trajetória, projetos e contato
 ├── js/
-│   └── main.js          # trajetória guiada pela rolagem, menu e cópia do e-mail
+│   └── main.js          # menu do celular, digitação, trajetória, seção atual e cópia do e-mail
 └── assets/
-    ├── icons/           # favicon e ícone para iPhone
+    ├── icons/           # favicon, ícone para iPhone e tecnologias.svg (ícones)
     └── images/
         ├── guilherme-corcelli.jpg / .webp
         ├── og-image.png # prévia ao compartilhar o link
